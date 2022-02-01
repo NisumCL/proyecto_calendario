@@ -8,21 +8,32 @@ const cumpleaniosNisum = () =>{
     .pipe(csv())
     .on('data', (data) => results.push(data))
     .on('end', ()=> {
-        const hoy = new Date();
-        const year = hoy.getFullYear()
-        const este_year = year.toString()
-        const limite = new Date();
-        limite.setDate(limite.getDate() + 16);
-        
+        const today = new Date();
+        const yearInt = today.getFullYear()
+        const nextYearInt = yearInt + 1
+        const thisYear = yearInt.toString()
+        const nextYear = nextYearInt.toString()
+        const limit = new Date();
+        const yearLimit = new Date(yearInt,11,17)
+        limit.setDate(limit.getDate() + 15 );
+
         for (const row in results) {
-    
-            const fecha_nac_func = results[row].cumpleanios
-    
-            const dia_cumple_func = fecha_nac_func.slice(4)
+            let nextBirthDay = 0
             
-            const fecha_cumple_este_year =  new Date(este_year + dia_cumple_func)
+            const birthDate = results[row].cumpleanios
+            
+            const birthDay = birthDate.slice(4)
+
+            
+            if( today >= yearLimit && birthDay.substring(1, 3)==='01' ){
+            
+                nextBirthDay =  new Date(nextYear + birthDay)
+            } else{
+                nextBirthDay =  new Date(thisYear + birthDay)
+            }
+
     
-            if(hoy <= fecha_cumple_este_year && fecha_cumple_este_year < limite){
+            if(today <= nextBirthDay && nextBirthDay < limit){
                 console.log(results[row].apellido_y_nombre, results[row].cumpleanios)
             }
         }
