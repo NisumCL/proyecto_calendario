@@ -13,8 +13,8 @@ const cumpleaniosNisum = () =>{
         const nextYearInt = yearInt + 1
         const thisYear = yearInt.toString()
         const nextYear = nextYearInt.toString()
-        const limit = new Date();
         const yearLimit = new Date(yearInt,11,17)
+        const limit = new Date();
         limit.setDate(limit.getDate() + 15 );
 
         for (const row in results) {
@@ -26,7 +26,6 @@ const cumpleaniosNisum = () =>{
 
             
             if( today >= yearLimit && birthDay.substring(1, 3)==='01' ){
-            
                 nextBirthDay =  new Date(nextYear + birthDay)
             } else{
                 nextBirthDay =  new Date(thisYear + birthDay)
