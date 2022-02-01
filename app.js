@@ -6,7 +6,7 @@ const parser = require("csv-parser");
 const results = [];
 const newResults = [];
 
-//Se lee archivo y se guarda en una variable "results"
+//Se guarda en una variable "results"
 fs.createReadStream("mails_y_cumples_03.csv")
   .pipe(parser({}))
   .on("data", (data) => results.push(data))
