@@ -51,7 +51,4 @@ fs.createReadStream('mails_y_cumples_03.csv')
     })
     .on("end",() => {
         mostrar(cumpleanios)
-    })
-
-
-
+    });
