@@ -56,7 +56,7 @@ const funcionCumpleannos = (a,b) =>{
     const fecha1 = new Date(yearA + ',' + a.replace('/', ','))
     const fecha2 = new Date(yearB +',' + b.replace('/', ','))
 
-    console.log(yearA, yearB)
+    console.log(chalk.cyan(`Years: ${yearA}, ${yearB}`))
     const cumpleanios = []
     
 
@@ -64,7 +64,7 @@ const funcionCumpleannos = (a,b) =>{
     const mostrar = (datos) =>{
             for (i in datos){
                 var a=parseInt(i)+1
-                console.log(a,".- ",datos[i].apellido_y_nombre.split(',').reverse().join(" "), datos[i].cumpleanios)
+                console.log(chalk.cyan(a,".- ",datos[i].apellido_y_nombre.split(',').reverse().join(" "), datos[i].cumpleanios))
             }
         }
 
@@ -74,73 +74,38 @@ const funcionCumpleannos = (a,b) =>{
         mesCumple = parseInt(cumple[1])
         diaCumple= parseInt(cumple[2])
 
-        if(fecha2.getMonth()+1 == fecha1.getMonth()+1 && fecha1.getDate() < fecha2.getDate()){
-            if(mesCumple === fecha2.getMonth()+1 && fecha1.getDate() >= diaCumple && diaCumple >= fecha2.getDate()){
-                return true
+        
+        
+        if(fecha1.getFullYear()=== fecha2.getFullYear() && fecha1.getMonth()< fecha2.getMonth()){
+            if(mesCumple == fecha1.getMonth()+1 && mesCumple == fecha2.getMonth()+1){
+                if (diaCumple >= fecha1.getDate() && diaCumple <= fecha2.getDate()){
+                    return true
+                }
+            } else if(mesCumple > fecha1.getMonth()+1 && mesCumple <= fecha2.getMonth()+1){
+                if (diaCumple <= fecha2.getDate()){
+                    return true
+                }
+            } else if(mesCumple >= fecha1.getMonth()+1 && mesCumple < fecha2.getMonth()+1){
+                if (diaCumple >= fecha1.getDate()){
+                    return true
+                }
             }
-        } else if(fecha1.getMonth()+1 < fecha2.getMonth()+1){
-            if(mesCumple >= fecha1.getMonth()+1 && fecha2.getMonth()+1 >= mesCumple ){
+            return false
+
+        } else if (fecha1.getFullYear()< fecha2.getFullYear()){
+            if(mesCumple == fecha1.getMonth()+1 && mesCumple == fecha2.getMonth()+1){
+                if(diaCumple >= fecha1.getDate() || diaCumple <= fecha2.getDate()){
+                    return true
+                }
+            } else if(mesCumple > fecha1.getMonth()+1 || mesCumple < fecha2.getMonth()+1){
                 return true
-            }
-        } else if(fecha2.getMonth()+1 == fecha1.getMonth()+1 && fecha1.getDate() >= fecha2.getDate()){
-            if((mesCumple <= fecha2.getMonth()+1 || fecha1.getMonth()+1 <= mesCumple) && (fecha2.getDate() >= diaCumple || diaCumple >= fecha1.getDate())){
-                return true
-            }
+            } 
+            return false
         } 
-        // if(mesCumple == fecha1.getMonth()+1 && mesCumple == fecha2.getMonth()+1){
-        //     if(fecha1.getDate() < fecha2.getDate()){
-        //         if(fecha1.getDate() > diaCumple || diaCumple > fecha2.getDate()){
-        //             return false
-        //         } 
-        //     } else if(fecha2.getDate() <= fecha1.getDate()){
-        //         if(diaCumple > fecha2.getDate() || fecha1.getDate() > diaCumple){
-        //             return false
-        //         } 
-        //     } 
-        // } else if(fecha1.getMonth()+1 === fecha2.getMonth()+1){
-        //     if(fecha1.getDate() < fecha2.getDate() && mesCumple!= fecha2.getMonth()+1){
-        //         return false
-        //     } else if(fecha2.getDate() < fecha1.getDate()){
-        //         if(fecha1.getMonth()+1 > mesCumple || mesCumple > fecha2.getMonth()+1){
-        //             return false
-        //         } 
-        //     }
-        // } else if(fecha1.getMonth()+1 < fecha2.getMonth()+1){
-        //     if(diaCumple > fecha2.getDate() || fecha1.getDate() > diaCumple){
-        //         return false
-        //     } 
-        // } else if(fecha1.getMonth()+1 > fecha2.getMonth()+1){
-        //     if(mesCumple < fecha1.getMonth()+1 || mesCumple > fecha2.getMonth()+1){
-        //         return false
-        //     }
-        // }
-        
-        
-        // if(mesCumple == fecha1.getMonth()+1 && mesCumple == fecha2.getMonth()+1){
-        //     if (diaCumple >= fecha1.getDate() || diaCumple <= fecha2.getDate()){
-        //     return true
-        //     }
-        // }
-        // else if(mesCumple === fecha1.getMonth()+1){
-        //     if(diaCumple >= fecha1.getDate()){
-        //             return true
-        //         }
-        // }else if (mesCumple === fecha2.getMonth()+1){
-        //     if(diaCumple <= fecha2.getDate()){
-        //             return true
-        //         }
-        // }else if(fecha2.getMonth()+1 < fecha1.getMonth()+1){
-        //     if(diaCumple >= fecha1.getDate() && diaCumple <= fecha2.getDate()){
-        //         return true
-        //     } else if(diaCumple > fecha2.getDate){
-        //         return false
-        //     }
-        // }
-
-
-
-        return false
     }
+
+
+
 
     fs.createReadStream('mails_y_cumples_03.csv')
         .pipe(parse({
