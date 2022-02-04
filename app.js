@@ -58,8 +58,6 @@ const funcionCumpleannos = (a,b) =>{
 
     console.log(chalk.cyan(`Years: ${yearA}, ${yearB}`))
     const cumpleanios = []
-    
-
 
     const mostrar = (datos) =>{
             for (i in datos){
@@ -68,14 +66,11 @@ const funcionCumpleannos = (a,b) =>{
             }
         }
 
-    
     const compararFecha = (fecha1, fecha2, cumple) => {
         
         mesCumple = parseInt(cumple[1])
         diaCumple= parseInt(cumple[2])
 
-        
-        
         if(fecha1.getFullYear()=== fecha2.getFullYear() && fecha1.getMonth()< fecha2.getMonth()){
             if(mesCumple == fecha1.getMonth()+1 && mesCumple == fecha2.getMonth()+1){
                 if (diaCumple >= fecha1.getDate() && diaCumple <= fecha2.getDate()){
@@ -92,20 +87,21 @@ const funcionCumpleannos = (a,b) =>{
             }
             return false
 
-        } else if (fecha1.getFullYear()< fecha2.getFullYear()){
+        } else if (fecha1.getFullYear()< fecha2.getFullYear()){//check
             if(mesCumple == fecha1.getMonth()+1 && mesCumple == fecha2.getMonth()+1){
                 if(diaCumple >= fecha1.getDate() || diaCumple <= fecha2.getDate()){
                     return true
                 }
+            } else if(mesCumple == fecha2.getMonth()+1 && diaCumple <= fecha2.getDate()){
+                return true
+            } else if(mesCumple == fecha1.getMonth()+1 && diaCumple >= fecha1.getDate()){
+                return true
             } else if(mesCumple > fecha1.getMonth()+1 || mesCumple < fecha2.getMonth()+1){
                 return true
-            } 
+            }
             return false
         } 
     }
-
-
-
 
     fs.createReadStream('mails_y_cumples_03.csv')
         .pipe(parse({
