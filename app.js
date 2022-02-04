@@ -33,6 +33,8 @@ const compararFecha = (fecha1, fecha2, cumple) => {
         if(diaCumple <= fecha2.getDate()){
             return true;
         }
+    } else if (mesCumple > fecha1.getMonth()+1 && mesCumple < fecha2.getMonth()+1){
+        return true;
     }
     return false;
 }
