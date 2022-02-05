@@ -14,7 +14,7 @@ if(!process.argv[2]){
                 chalk.cyan.bold('--------------------------------------------------------------------------------------------'))
 }
 
-//
+
 const funcionCumpleannos = (a,b) =>{
     
     if(a.includes('-') || b.includes('-')){
@@ -56,7 +56,7 @@ const funcionCumpleannos = (a,b) =>{
     const fecha1 = new Date(yearA + ',' + a.replace('/', ','))
     const fecha2 = new Date(yearB +',' + b.replace('/', ','))
 
-    console.log(chalk.cyan(`Years: ${yearA}, ${yearB}`))
+    //console.log(chalk.cyan(`Years: ${yearA}, ${yearB}`))
     const cumpleanios = []
 
     const mostrar = (datos) =>{
@@ -71,7 +71,7 @@ const funcionCumpleannos = (a,b) =>{
         mesCumple = parseInt(cumple[1])
         diaCumple= parseInt(cumple[2])
 
-        if(fecha1.getFullYear()=== fecha2.getFullYear() && fecha1.getMonth()< fecha2.getMonth()){
+        if(fecha1.getFullYear()=== fecha2.getFullYear()){
             if(mesCumple == fecha1.getMonth()+1 && mesCumple == fecha2.getMonth()+1){
                 if (diaCumple >= fecha1.getDate() && diaCumple <= fecha2.getDate()){
                     return true
@@ -87,7 +87,7 @@ const funcionCumpleannos = (a,b) =>{
             }
             return false
 
-        } else if (fecha1.getFullYear()< fecha2.getFullYear()){//check
+        } else if (fecha1.getFullYear()< fecha2.getFullYear()){
             if(mesCumple == fecha1.getMonth()+1 && mesCumple == fecha2.getMonth()+1){
                 if(diaCumple >= fecha1.getDate() || diaCumple <= fecha2.getDate()){
                     return true
@@ -117,27 +117,29 @@ const funcionCumpleannos = (a,b) =>{
             mostrar(cumpleanios)
         })
 }
-    yargs.command({
-        command: 'addDates',
-        describe: 'You can see all the birthdays between two dates in the year',
-        builder: {
-            first: {
-                describe: 'First Date',
-                demandOption: true,  // Required
-                type: 'string'     
-            },
-            second: {  
-                describe: 'Second Date',
-                demandOption: true, //Required
-                type: 'string'
-            }
+
+yargs.command({
+    command: 'addDates',
+    describe: 'You can see all the birthdays between two dates in the year',
+    builder: {
+        first: {
+            describe: 'First Date',
+            demandOption: true,  // Required
+            type: 'string'     
         },
-        
-        // Function for your command
-        handler(argv) {
-            funcionCumpleannos(argv.first, argv.second)
-            
+        second: {  
+            describe: 'Second Date',
+            demandOption: true, //Required
+            type: 'string'
         }
-    })
-    yargs.parse()
+    },
+    
+    // Function for your command
+    handler(argv) {
+        funcionCumpleannos(argv.first, argv.second)
+        
+    }
+})
+
+yargs.parse()
 
