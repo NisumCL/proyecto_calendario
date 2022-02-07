@@ -1,6 +1,17 @@
+const fs = require('fs')
 const validateDate = require('validate-date')
 const chalk = require('chalk');
+const parse = require('csv-parser')
 
+
+const instruCCions = () =>{
+    console.log(chalk.cyan.bold('--------------------------------------------------------------------------------------------')+ '\r\n' +
+                chalk.cyan.bold('This app finds all the employees birthdays between two dates at most separated for 365 days.' + '\r\n' + 
+                                'Please provide the required two dates following the next format:') + '\r\n' +
+                chalk.magenta.bold('node app.js addDates --first="mm/dd" --second="mm/dd"')+ '\r\n' + 
+                chalk.cyan.bold('Please consider that the first date takes the cuurent year and if you provide the greater' + '\r\n' + 'date as first, as well as if both dates are the same, the second takes one year later.') +'\r\n'+
+                chalk.cyan.bold('--------------------------------------------------------------------------------------------'))
+}
 
 const validarFechas = (a,b) =>{
     if(a.includes('-') || b.includes('-')){
@@ -89,9 +100,41 @@ const mostrarFecha = (datos) =>{
     }
 }
 
+
+
+const funcionCumpleannos = (a,b) =>{
+    
+
+    if(!validarFechas(a,b)){
+        console.log(chalk.red('Please use the required format'))
+        return false
+    }
+
+    const { fecha1, fecha2 } = hr.asignarYear(a,b)
+    const cumpleanios = []
+
+    fs.createReadStream('mails_y_cumples_03.csv')
+        .pipe(parse({
+                delimiter: ','
+            })
+        )
+        .on("data", (dataRow) => {
+            if(compararFecha(fecha1, fecha2, dataRow.cumpleanios.split('-'))){
+                cumpleanios.push(dataRow)
+            }
+        })
+        .on("end",() => {
+            mostrarFecha(cumpleanios)
+        })
+}
+
+
+
 module.exports = {
     validarFechas,
     compararFecha,
     mostrarFecha,
-    asignarYear
+    asignarYear,
+    instruCCions,
+    funcionCumpleannos
 }
