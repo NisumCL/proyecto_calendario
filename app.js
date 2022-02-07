@@ -1,10 +1,50 @@
 const parse = require('csv-parser')
 const fs = require('fs')
 
-const fecha1 = new Date(2021,1,28)
-const fecha2 = new Date(fecha1.getFullYear(), fecha1.getMonth(), fecha1.getDate()+15)
+const fechaInicio = process.argv[2]
+const fechaFin = process.argv[3]
+
+const fecha1 = new Date(fechaInicio)
+const fecha2 = new Date(fechaFin)
 
 const cumpleanios = []
+
+// function validarFechaMayor(fecha1, fecha2){
+//     const fecha1_ = new Date(fecha1)
+//     const fecha2_ = new Date(fecha2)
+//     let fechaMes = fecha1_.getMonth() + 1
+//     let fechaMes2 = fecha2_.getMonth() + 1
+//     let fechaDia = fecha1_.getDate() + 1
+//     let fechaDia2 = fecha2_.getDate() + 1
+
+//     // console.log(typeof(fechaMes))
+//     // console.log(fechaMes2)
+
+//     if ((fechaMes === fechaMes2 && fechaDia < fechaDia2) && fechaMes2 <= fechaMes) {
+//         console.log(typeof(fechaMes))
+//     console.log(fechaMes2)
+//         return true
+//     } else{
+//         console.log('el primer mes debe ser menor')
+//         return false
+//     }
+    
+// }
+function formatoFechas(date){
+    let regex = new RegExp(/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/)
+    var dateOk = regex.test(date)
+    if(dateOk){
+        return true
+    }else{
+        return false
+    }
+}
+if (formatoFechas(fechaInicio) && formatoFechas(fechaFin)) {
+    console.log('Formato correcto')
+}else{
+    console.log('formato invalido')
+    return false
+}
 
 // Enumero a los cumpleañeros y muestro solo su fecha de nacimiento y su nombre
 const mostrar = (datos) =>{
@@ -33,6 +73,8 @@ const compararFecha = (fecha1, fecha2, cumple) => {
         if(diaCumple <= fecha2.getDate()){
             return true
         }
+    } else if (mesCumple > fecha1.getMonth() + 1 && mesCumple < fecha2.getMonth() + 1) {
+        return true
     }
     return false
 }
