@@ -2,7 +2,7 @@ const parse = require('csv-parser')
 const fs = require('fs')
 const yargs = require('yargs')
 const chalk = require('chalk');
-const validateDate = require('validate-date')
+const { validarFechas, asignarYear, compararFecha, mostrarFecha } = require('./helper.js')
 
 
 if(!process.argv[2]){
@@ -17,91 +17,14 @@ if(!process.argv[2]){
 
 const funcionCumpleannos = (a,b) =>{
     
-    if(a.includes('-') || b.includes('-')){
-        console.log(chalk.red('Please use the required format'))
-        return
-    } 
-    const validarFechas = (a,b) =>{
-        if(validateDate((1843 + '/' + a), responseType="boolean", dateFormat="yy/mm/dd")){
-            if(validateDate((1843 + '/' + b), responseType="boolean", dateFormat="yy/mm/dd")){
-                return true
-            } else{
-                return false
-            }
-        } return false
-    }
-
-    //En esta parte simplemente valido que a y b sean fechas de mes y dia
     if(!validarFechas(a,b)){
-        console.log(chalk.red('You must provide valid dates in the required format'))
+        console.log(chalk.red('Please use the required format'))
+        return false
     }
 
-    const today = new Date()
-    const yearA = today.getFullYear()
-    let yearB = 0
-    
-    if(parseInt(a.substring(0,2)) > parseInt(b.substring(0,2))){
-        yearB = today.getFullYear() + 1
-        
-    } else if(parseInt(a.substring(0,2)) === parseInt(b.substring(0,2))){
-        if(a.slice(3) >= b.slice(3)){
-            yearB = today.getFullYear() + 1
-            
-        } else if(a.slice(3) < b.slice(3)){
-            yearB = today.getFullYear()
-        }
-    } else {
-        yearB = today.getFullYear()
-    }
-    const fecha1 = new Date(yearA + ',' + a.replace('/', ','))
-    const fecha2 = new Date(yearB +',' + b.replace('/', ','))
+    const { fecha1, fecha2 } = asignarYear(a,b)
 
-    //console.log(chalk.cyan(`Years: ${yearA}, ${yearB}`))
     const cumpleanios = []
-
-    const mostrar = (datos) =>{
-            for (i in datos){
-                var a=parseInt(i)+1
-                console.log(chalk.cyan(a,".- ",datos[i].apellido_y_nombre.split(',').reverse().join(" "), datos[i].cumpleanios))
-            }
-        }
-
-    const compararFecha = (fecha1, fecha2, cumple) => {
-        
-        mesCumple = parseInt(cumple[1])
-        diaCumple= parseInt(cumple[2])
-
-        if(fecha1.getFullYear()=== fecha2.getFullYear()){
-            if(mesCumple == fecha1.getMonth()+1 && mesCumple == fecha2.getMonth()+1){
-                if (diaCumple >= fecha1.getDate() && diaCumple <= fecha2.getDate()){
-                    return true
-                }
-            } else if(mesCumple > fecha1.getMonth()+1 && mesCumple <= fecha2.getMonth()+1){
-                if (diaCumple <= fecha2.getDate()){
-                    return true
-                }
-            } else if(mesCumple >= fecha1.getMonth()+1 && mesCumple < fecha2.getMonth()+1){
-                if (diaCumple >= fecha1.getDate()){
-                    return true
-                }
-            }
-            return false
-
-        } else if (fecha1.getFullYear()< fecha2.getFullYear()){
-            if(mesCumple == fecha1.getMonth()+1 && mesCumple == fecha2.getMonth()+1){
-                if(diaCumple >= fecha1.getDate() || diaCumple <= fecha2.getDate()){
-                    return true
-                }
-            } else if(mesCumple == fecha2.getMonth()+1 && diaCumple <= fecha2.getDate()){
-                return true
-            } else if(mesCumple == fecha1.getMonth()+1 && diaCumple >= fecha1.getDate()){
-                return true
-            } else if(mesCumple > fecha1.getMonth()+1 || mesCumple < fecha2.getMonth()+1){
-                return true
-            }
-            return false
-        } 
-    }
 
     fs.createReadStream('mails_y_cumples_03.csv')
         .pipe(parse({
@@ -109,12 +32,12 @@ const funcionCumpleannos = (a,b) =>{
             })
         )
         .on("data", (dataRow) => {
-            if(validarFechas(a,b) && compararFecha(fecha1, fecha2, dataRow.cumpleanios.split('-'))){
+            if(compararFecha(fecha1, fecha2, dataRow.cumpleanios.split('-'))){
                 cumpleanios.push(dataRow)
             }
         })
         .on("end",() => {
-            mostrar(cumpleanios)
+            mostrarFecha(cumpleanios)
         })
 }
 
