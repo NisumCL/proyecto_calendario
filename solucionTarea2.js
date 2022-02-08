@@ -11,13 +11,13 @@ const rl = reader.createInterface({
 //Se solicita el inicio del intervalo
 rl.question("¿Ingrese la fecha de inicio del periodo de busqueda (AAAA/MM/DD)? ", (initDate) => {
   //Se transforma a formato Date
-  const startDate = new Date(initDate.replace('-','/'));
+  const startDate = new Date(initDate);
   //Se valida que sea una fecha valida
   if (isValid(startDate)) {
     //Se solicita el final del intervalo
     rl.question("¿Ingrese la fecha de termino del periodo de busqueda (AAAA/MM/DD)? ", (endDate) => {
       //Se transforma a formato Date
-      const finalDate = new Date(endDate.replace('-','/'));
+      const finalDate = new Date(endDate);
       //Se valida que sea una fecha valida
       if (isValid(finalDate)) {
         //Se valida que el inicio del intervalo sea menor que el final del intervalo
