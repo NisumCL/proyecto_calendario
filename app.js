@@ -17,10 +17,10 @@ function isValidDate(date) {
 if (isValidDate(fechaInicio) && isValidDate(fechaFin)) {
     console.log('Formato correcto')
 
-} else if (!isValidDate(fechaInicio) && isValidDate(fechaFin)) {
+} else if (!isValidDate(fechaInicio)) {
     console.log('Formato incorrecto de la primera fecha ingresada')
     return false
-} else if (isValidDate(fechaInicio) && !isValidDate(fechaFin)) {
+} else if (!isValidDate(fechaFin)) {
     console.log('Formato incorrecto de la segunda fecha ingresada')
     return false
 } else {
