@@ -12,11 +12,7 @@ const cumpleanios = []
 function isValidDate(date) {
     let regex = new RegExp(/^([12]\d{3}\/(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01]))$/)
     let dateOk = regex.test(date)
-    if (dateOk) {
-        return true
-    } else {
-        return false
-    }
+    return dateOk
 }
 if (isValidDate(fechaInicio) && isValidDate(fechaFin)) {
     console.log('Formato correcto')
