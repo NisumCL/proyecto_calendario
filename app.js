@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const parse = require('csv-parser')
 const fs = require('fs')
 
@@ -8,6 +10,11 @@ const fecha1 = new Date(fechaInicio)
 const fecha2 = new Date(fechaFin)
 
 const cumpleanios = []
+
+console.log(process.env.PATH)
+console.log(process.env.SECRET_KEY || '')
+
+
 
 function isValidDate(date) {
     let regex = new RegExp(/^([12]\d{3}\/(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01]))$/)
