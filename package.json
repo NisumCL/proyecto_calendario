@@ -1,4 +1,14 @@
 {
+    "name": "pruebas",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "node ./app.js"
+    },
+    "author": "",
+    "license": "ISC",
+  
   "dependencies": {
     "csv-parse": "^5.0.4",
     "csv-parser": "^3.0.0",
