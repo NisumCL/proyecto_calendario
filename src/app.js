@@ -19,6 +19,18 @@ function isValidDate(date) {
     let dateOk = regex.test(date);
     return dateOk;
 }
+if(fechaFin > fechaInicio){
+    console.log(' Por favor,ingrese las fechas en el orden requerido')
+    console.log('test 1: la aplicacion no colapsa ni prosigue en caso de que el usuario provea fechas en el formato incorrecto')
+    return false;
+}
+if(!process.argv){
+    console.log(' Por favor,ingrese las fechas')
+    console.log('test 2: la aplicacion finaliza en caso de que el usuario no provea fechas')
+    return false;
+}
+
+
 if (isValidDate(fechaInicio) && isValidDate(fechaFin)) {
     console.log("Formato correcto");
 } else if (!isValidDate(fechaInicio)) {
@@ -38,6 +50,11 @@ const mostrar = (datos) => {
     }
 };
 const compararFecha = (fecha1, fecha2, cumple) => {
+    // if fecha2 > fecha 1 console.log (' por favor, ingrese una segunda fecha mayor a la primera) console.log('considere que las fechas en caso de que la segunda sea mayor, se consideran para el intervalo")
+    
+
+    
+    
     mesCumple = parseInt(cumple[1]);
     diaCumple = parseInt(cumple[2]);
     if (
@@ -60,6 +77,10 @@ const compararFecha = (fecha1, fecha2, cumple) => {
         mesCumple < fecha2.getMonth() + 1
     ) {
         return true;
+    } else if(fecha1.getMonth === fecha2.getMonth && fecha1.getDate === fecha2.getDate && fecha1.getFullYear() === fecha1.getFullYear() && mesCumple=== fecha2.getMonth && diaCumple === fecha1.getDate ){
+        console.log('Por favor consodere que en caso de que provea dos fechas ideticas, esta app solo busca cumpleaños que caigan en este dia')
+        console.log('test 3= en caso de que el usuario provea dos fechas iguales, la app le ofrece solamente las coincidencias con esta fecha unica')
+        return true
     }
     return false;
 };
