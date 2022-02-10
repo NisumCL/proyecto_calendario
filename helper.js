@@ -1,7 +1,5 @@
-const fs = require('fs')
 const validateDate = require('validate-date')
 const chalk = require('chalk');
-const parse = require('csv-parser')
 
 
 const instruCCions = () =>{
@@ -13,7 +11,25 @@ const instruCCions = () =>{
                 chalk.cyan.bold('--------------------------------------------------------------------------------------------'))
 }
 
-const validarFechas = (a,b) =>{
+
+// const opcionesUsuario = (c) =>{
+//     if( c === 1 || c===2){
+//         //pedir un solo input a
+//         
+//         // a = input
+//         // if(!validarFechas(a)){return} else{ const b= a.substring(0,2) + '/' + (parseInt(a.slice(3)) + 1) }
+//     } if ( c === 1){
+//         //cumpleaños de este mes=> pedir una fecha, la segunda fecha es el el mismo getDate, pero de getMonth +2
+//     } if (c==2){//cumpleaños del proximo mes => fechas entre el 1 del getmMonth +2 y el 1 del getMonth mas 2 }
+//        else {//pedir dos inputs.
+//         //funcion normal, }//todas las opciones pasan por validar y asignar año
+//     return {
+//         a,
+//         b
+//     }
+// }
+
+const validarFechas = (a,b) =>{ 
     if(a.includes('-') || b.includes('-')){
         return false
     }
@@ -26,6 +42,7 @@ const validarFechas = (a,b) =>{
         }
     } return false
 }
+
 
 const asignarYear = (a, b) =>{
     const today = new Date()
@@ -92,7 +109,6 @@ const compararFecha = (fecha1, fecha2, cumple) => {
 }
 
 
-
 const mostrarFecha = (datos) =>{
     for (i in datos){
         var a=parseInt(i)+1
@@ -101,40 +117,10 @@ const mostrarFecha = (datos) =>{
 }
 
 
-
-const funcionCumpleannos = (a,b) =>{
-    
-
-    if(!validarFechas(a,b)){
-        console.log(chalk.red('Please use the required format'))
-        return false
-    }
-
-    const { fecha1, fecha2 } = hr.asignarYear(a,b)
-    const cumpleanios = []
-
-    fs.createReadStream('mails_y_cumples_03.csv')
-        .pipe(parse({
-                delimiter: ','
-            })
-        )
-        .on("data", (dataRow) => {
-            if(compararFecha(fecha1, fecha2, dataRow.cumpleanios.split('-'))){
-                cumpleanios.push(dataRow)
-            }
-        })
-        .on("end",() => {
-            mostrarFecha(cumpleanios)
-        })
-}
-
-
-
 module.exports = {
     validarFechas,
     compararFecha,
     mostrarFecha,
     asignarYear,
-    instruCCions,
-    funcionCumpleannos
+    instruCCions
 }

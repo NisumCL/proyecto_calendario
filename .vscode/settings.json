@@ -1,0 +1,6 @@
+{
+    "cSpell.diagnosticLevel": "Hint",
+    "jshint.options": {
+        "esversion": 6
+    }
+}
