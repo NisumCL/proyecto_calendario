@@ -11,10 +11,6 @@ const fecha2 = new Date(fechaFin);
 
 const cumpleanios = [];
 
-// console.log(process.env.PATH)
-console.log(process.env.SECRET_KEY || "");
-
-console.log("Hola ");
 
 function isValidDate(date) {
     let regex = new RegExp(
