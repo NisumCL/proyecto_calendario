@@ -63,9 +63,12 @@ if (isValidDate(fechaInicio) && isValidDate(fechaFin)) {
       mostrar(cumpleanios);
     });
 } else if (!isValidDate(fechaInicio)) {
+  // eslint-disable-next-line no-console
   console.log('Formato incorrecto de la primera fecha ingresada');
 } else if (!isValidDate(fechaFin)) {
+  // eslint-disable-next-line no-console
   console.log('Formato incorrecto de la segunda fecha ingresada');
 } else {
+  // eslint-disable-next-line no-console
   console.log('Formato de ambas fechas es invalido');
 }
