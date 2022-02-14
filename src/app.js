@@ -15,15 +15,14 @@ const isInformedInput = (input) => {
         console.log(chalk.bgRed("Ingresa una fecha"));
         return false;
     } else if (process.argv.length >= 5) {
-        console.log("Ingresa dos fechas");
+        console.log("Solo hay que ingresar dos fechas");
         return false;
     } else {
         return true;
     }
 };
 
-let isValidInputInicio = isInformedInput(inputInicio);
-let isValidInputFin = isInformedInput(inputFin);
+let isValidInput = isInformedInput(inputInicio, inputFin);
 
 const isValidFormatDate = (date) => {
     let regex = /^\d{4}\/\d{1,2}\/\d{1,2}$/;
@@ -59,7 +58,7 @@ if (!isValidInputInicioFormatDate || !isValidInputFinFormatDate) {
     return false;
 }
 
-if (isValidInputInicio && isValidInputFin) {
+if (isValidInput) {
     const fecha1 = new Date(inputInicio);
     const fecha2 = new Date(inputFin);
 
