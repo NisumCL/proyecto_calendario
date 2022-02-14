@@ -68,6 +68,12 @@ if (isValidInputInicio && isValidInputFin) {
             fecha1.getMonth() > fecha2.getMonth()
         ) {
             return true;
+        } else if (
+            fecha1.getFullYear() != fecha2.getFullYear() &&
+            fecha1.getMonth() <= fecha2.getMonth()
+        ) {
+            console.log("Tus fechas no deben ser de mas de un año");
+            return false;
         } else if (fecha1 <= fecha2) {
             return true;
         } else {
