@@ -14,6 +14,9 @@ const isInformedInput = (input) => {
     } else if (input.trim() === "") {
         console.log(chalk.bgRed("Ingresa una fecha"));
         return false;
+    } else if (process.argv.length >= 5) {
+        console.log("Ingresa dos fechas");
+        return false;
     } else {
         return true;
     }
@@ -101,14 +104,6 @@ if (isValidInputInicio && isValidInputFin) {
                 mostrar(cumpleanios);
             });
     }
-
-    //pend
-    // const typeofData = (fecha1, fecha2) => {
-    //     if (fecha1 === inputInicio && fecha2 === inputFin) {
-    //         return true;
-    //     }
-    // };
-    //console.log(typeofData(fecha1, fecha2));
 
     const mostrar = (datos) => {
         for (i in datos) {
