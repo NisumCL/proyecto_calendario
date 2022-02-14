@@ -1,16 +1,14 @@
 const parse = require('csv-parser')
 const fs = require('fs')
 const yargs = require('yargs')
-const chalk = require('chalk');
+const chalk = require('chalk')
 const hr = require('./helper.js')
 
-
-if(!process.argv[2]){
+if (!process.argv[2]){
     hr.instruCCions()
 } 
 
 const funcionCumpleannos = (a, b) => {
-
     if (!hr.validarFechas(a, b)) {
         console.log(chalk.red('Please use the required format'));
         return false;
@@ -52,7 +50,7 @@ yargs.command({
     },
     
     // Function for your command
-    handler(argv) {
+    handler (argv) {
         funcionCumpleannos(argv.first, argv.second)
         
     }

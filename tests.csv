@@ -1,0 +1,142 @@
+Column1,Column2,Column3,Column4,Column5,Column6,Column7,Column8,Column9,Column10
+aplicación original,,,,,,,,,
+n_test,tests,,parametros a testear,,parametros ingresados,resultado esperado,resultado obtenido,estado,conclusiones
+1,El usuario no provee inputs,,el usuario no provee inputs,ningun input,node src/app.js,instrucciones,Formato incorrecto de la primera fecha ingresada,no-aprobado,proveer instrucciones de uso
+2,Se chequea el formato de los imputs que provea el usuario y la respuesta que da el programa a ingresos en formatos incorrectos. Se espera que el programa no arroje resultados y en lo posible que avise la razón de esto al usuario.,,El usuario entrega un solo imput con diversos formatos incorrectos. ,un solo input en formato YYYY-dd-mm,node src/app.js 2022-29-08,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,enviar mensaje mas abarcativo
+3,,,,un solo input en formato YYYY-mm-dd,node src/app.js 2022-08-29,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+4,,,,un solo input en formato YYYY-m-dd,node src/app.js 2022/8/29,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la segunda fecha ingresada,,
+5,,,,un solo input en formato YYYY/mm/dd,node src/app.js 2022/08/29,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la segunda fecha ingresada,aprobado,
+6,,,,un solo input en formato YYYY/dd/mm,node src/app.js 2022/29/08,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+7,,,,un solo input en formato YYYY/mm,node src/app.js 2022/08   ,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+8,,,,un solo input en formato mm/dd,node src/app.js 29/08,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+9,,,,un solo input numeral,node src/app.js 29,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+10,,,,un solo input en formato mm-dd,node src/app.js 29-08,MENSAJE DE FORMATO INCORRECTO,"se cae G:\nisum\NODE\proyecto_calendario\node_modules\validate-date\validate-date.js:60
+        `(\\d{${formatSplit[0].length}})(${dateSeparator})(\\d{${formatSplit[1].length}})(${dateSeparator})(\\d{${formatSplit[2].length}})`   
+                                                                                ^
+
+TypeError: Cannot read properties of undefined (reading 'length')
+    at dateValidator (G:\nisum\NODE\proyecto_calendario\node_modules\validate-date\validate-date.js:60:81)
+    at validateDate (G:\nisum\NODE\proyecto_calendario\node_modules\validate-date\validate-date.js:7:10)
+    at isValidDate (G:\nisum\NODE\proyecto_calendario\src\isvaliddate.js:5:8)
+    at Object.<anonymous> (G:\nisum\NODE\proyecto_calendario\src\app.js:56:5)",no-aprobado,se necesita capturar este error y transmitirlo al usuario
+11,,,,comilla doble incompleta,"node src/app.js ""29/08",MENSAJE DE FORMATO INCORRECTO,no ejecuta nada se pega,no-aprobado,se necesita capturar esto y transmitirlo al usuario
+12,,,,comillas dobles,"node src/app.js ""29/08""",MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,enviar mensaje mas abarcativo
+13,,,,comillas simples,node src/app.js '29/08',MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+14,,,,letras en un solo input,node src/app.js ghjkjbn,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+15,,,El usuario entrega dos inputs con diversos formatos incorrectos. ,letras en vez de digitos en ambos inputs,node src/app.js ghjkjbn fghjkljhgfg,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+16,,,,letras e input con guiones,node src/app.js ghjkjbn 2022-29-02,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+17,,,,letras e input de fecha invalida,node src/app.js ghjkjbn 2022/29/02,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+18,,,,"fecha 1 ""YYYY-mm-dd"" y fecha 2 YYYY/mm/dd",node src/app.js 2055-12-24 2022/29/02,MENSAJE DE FORMATO INCORRECTO,"se cae G:\nisum\NODE\proyecto_calendario\node_modules\validate-date\validate-date.js:60
+        `(\\d{${formatSplit[0].length}})(${dateSeparator})(\\d{${formatSplit[1].length}})(${dateSeparator})(\\d{${formatSplit[2].length}})`   
+                                                                                ^
+
+TypeError: Cannot read properties of undefined (reading 'length')
+    at dateValidator (G:\nisum\NODE\proyecto_calendario\node_modules\validate-date\validate-date.js:60:81)
+    at validateDate (G:\nisum\NODE\proyecto_calendario\node_modules\validate-date\validate-date.js:7:10)
+    at isValidDate (G:\nisum\NODE\proyecto_calendario\src\isvaliddate.js:5:8)
+    at Object.<anonymous> (G:\nisum\NODE\proyecto_calendario\src\app.js:56:5)
+    at Module._compile (node:internal/modules/cjs/loader:1097:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1149:10)
+    at Module.load (node:internal/modules/cjs/loader:975:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)
+    at node:internal/main/run_main_module:17:47
+
+Node.js v17.4.0",no-aprobado,se necesita capturar este error y transmitirlo al usuario
+19,,,,"fecha 1 ""YYYY/dd/mm"" y fecha 2 YYYY-mm-dd",node src/app.js 2022/29/02  2055-12-24,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,enviar mensaje mas abarcativo
+20,,,,,node src/app.js 50  70,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+21,,,,con valores decimales,node src/app.js 2022/12/02  2055/12/2.4,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la segunda fecha ingresada,aprobado,
+22,,,,"una fecha correcta, la otra con guiones",node src/app.js 2022/12/02  2055-12-24,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la segunda fecha ingresada,aprobado,
+23,,,,con valores negativos,node src/app.js 2022/-12/02  2055/12/24,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la segunda fecha ingresada,aprobado,
+24,,,,primera fecha correcta y segundo input de numero entero,node src/app.js 2022/12/02 10,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la segunda fecha ingresada,aprobado,
+25,,,,fechas construidas con dias en un solo digito,node src/app.js 2022/12/2 2022/12/5,MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la primera fecha ingresada,aprobado,
+26,,,,fechas entre comillas dobles y la segunda con guiones,"node src/app.js ""2022/12/02"" ""2055-12-24""",MENSAJE DE FORMATO INCORRECTO,Formato incorrecto de la segunda fecha ingresada,aprobado,
+27,"Con el formato de cada fecha ya testeado, se testean relaciones entre fechas que puedan ser casos de borde. El resultado esperado depende de cada caso, pero en general, se busca que arroje solo los cumpleaños del dia, en caso de que ambas fechas sean iguales, que siempre entregue un intervalo de cumpleaños, en caso de haberlos, si es que se entregaron dos fechas validas.",,,fechas limitrofes,node src/app.js 0000/12/02 9999/12/24,mostrar cumpleaños en el rango,Formato incorrecto de la primera fecha ingresada,aprobado,
+28,,,,,node src/app.js 9999/12/02 9999/12/24,mostrar cumpleaños en el rango,Formato incorrecto de la primera fecha ingresada,aprobado,
+29,,,,,node src/app.js 1500/12/02 1500/12/24,mostrar cumpleaños en el rango,muestra cumpleaños,aprobado,"sacar el ""formato correcto"""
+30,,,,fechas correctas,node src/app.js 2010/12/02 2010/12/24,mostrar cumpleaños en el rango,muestra cumpleaños,aprobado,
+31,,,,fechas que no siempre existen en el primer input,node src/app.js 2010/02/29 2010/12/24,lanzar error si el año no existe,muestra cumpleaños,no-aprobado,se necesita transmitir al usuario que esta buscando una fecha inexistente
+32,,,,fechas que no siempre existen en el segundo input,node src/app.js  2010/12/24 2011/02/29,lanzar error si el año no existe,muestra cumpleaños,no-aprobado,
+33,,,,fechas que no existen iguales,node src/app.js  2010/02/29 2011/02/29,lanzar cumpleaños probable del dia,1 .-   OSVALDO MERCADO 1985-03-01,aprobado,"aprobado el cumpleaños, pero no el error de tirar años inexistentes"
+34,,,,fechas que si existen iguales,node src/app.js  2010/02/08 2011/02/08,lanzar cumpleaños probable del dia,"
+Formato correcto",aprobado,"sacar el ""formato correcto"""
+35,,,,,,,,,
+36,,,,mas de dos fechas en formato correcto,node src/app.js  2010/12/24 2011/02/29 2011/04/29,mostrar mensaje error,muestra cumpleaños,no-aprobado,no advierte al usuario de que no se puede poner mas de dos fechas y el usuario puede pensar que estan siendo consideradas. O no se deja pasar mas de dos fechas o se le envia un mensaje al usuario cuando esto ocurra.
+37,,,,mas de dos fechas y la ultima en formato incorrecto,node src/app.js  2010/12/24 2011/02/29 2011-04/29,mostrar mensaje error,muestra cumpleaños,no-aprobado,
+38,,,,mas de dos fechas y las ultimas don en formato incorrecto,node src/app.js  2010/12/24 2011-02/29 2011-04/29,mostrar mensaje error,Formato incorrecto de la segunda fecha ingresada,no-aprobado,
+39,,,,mas de dos fechas y la segunda en formato incorrecto,node src/app.js  2010/12/24 2011-02/29 2011/04/29,mostrar mensaje error,Formato incorrecto de la segunda fecha ingresada,no-aprobado,
+40,,,,fecha1 > fecha2 con igual año,node src/app.js  2010/02/19 2010/02/08,preguntar usuario: intervalo hacia atrás o adelante,Formato correcto,no-aprobado,"se le advierte al usuario de que respete el orden, o bien, se tolera f1> f2 con una advetencia para el usuario"
+41,,,,fechas con mas de un mes de distancia,node src/app.js  2010/02/19 2010/04/08,mostrar cumpleaños en el rango,"Formato correcto
+1 .-   CARLOS EDUARDO ALVAREZ 1989-02-22
+2 .-   NESTOR ALVAREZ 1987-03-31
+3 .-   VICTOR AMPUERO 1992-02-29
+4 .-   BYRON ARMIJO 1987-03-29
+5 .-   FRANCISCA CAMPILLAY 1993-04-05
+6 .-   CRISTOBAL CARTES 1985-02-27
+7 .-   JAVIERA CERDA 1991-03-15
+8 .-   VICTOR DALMAGRO 1968-03-14
+9 .-   CAROLINA ESCUDERO 1985-03-17
+10 .-   ANA ESPINOSA 1980-03-28
+11 .-   MATIAS FLORES 1990-03-20
+12 .-   DANIEL GIRALDO 1997-03-18
+13 .-   ALBERTO GONZALEZ 1989-03-28
+14 .-   CLAUDIO GONZALEZ 1983-03-15
+15 .-   LEONOR HERNANDEZ 1964-02-26
+16 .-   NORIS INFANTE 1976-03-29
+17 .-   FACUNDO ISKOWITZ 1985-03-04
+18 .-   RICARDO LAVIN 1993-02-24
+19 .-   BEATRIZ LOPEZ 1988-03-25
+20 .-   FEDERICO LOPEZ 1989-03-11
+21 .-   AMADOR MARIN 1984-04-08
+22 .-   SEBASTIAN MARTINEZ 1981-04-03
+23 .-   OSVALDO MERCADO 1985-03-01
+24 .-   CAMILA MORENO 1987-02-19
+25 .-   PAULO NAVARRO 1986-03-24
+26 .-   MAYER OLIVARES 1997-03-22
+27 .-   LUIS ORELLANA 1988-02-21
+28 .-   PABLO OYARZABAL 1977-03-19
+29 .-   BORIS PALACIOS 1989-02-19
+30 .-   CARLOS PEREZ QUIZHPE 1979-03-03
+31 .-   CARLOS IGNACIO PEREZ VALLEJO 1979-03-02
+32 .-   SERGIO PINA 1995-02-23
+33 .-   FRANCISCO PINO 1958-02-25
+34 .-   FRANCO QUEIROLO 1982-03-02
+35 .-   MONICA RETAMAL 1975-04-02
+36 .-   DANIEL RODRIGUEZ 1983-02-22
+37 .-   EDGAR RODRIGUEZ 1981-03-03
+38 .-   NATALIA ROJAS 1995-02-27
+39 .-   ANTHONY ROSAS 1995-02-26
+40 .-   FREDDY ROSAS 1990-03-03
+41 .-   GOURAHARI SETH 1984-03-10
+42 .-   IBTEHAJ HASSAN SYED 1991-03-30
+43 .-   CHRISTIAN TELLEZ 1984-02-25
+44 .-   ROY VILLASANA 1981-03-17
+45 .-   JOSE VIRRIEL VIRRIEL SALAZAR 1993-03-08",aprobado,"sacar el ""formato correcto"""
+42,,,,fecha1 > fecha2 con año fecha 1 < año fecha 2,node src/app.js  2010/02/19 2013/02/08,mostrar cumpleaños en el rango,Formato correcto y nada mas,no-aprobado,"el año no es relevante, se debe advertir al usuario fecha1 > fecha2 o tolerar y advertir al usuario"
+43,,,,fechas proximas en dos años distintos,node src/app.js  2010/12/28 2013/01/08,mostrar cumpleaños en el rango,muestra los cumpleaños,aprobado,"sacar el ""formato correcto"""
+44,,,,fechas proximas en el mismo año,node src/app.js  2010/12/31 2010/01/01,mostrar cumpleaños en el rango,muestra los cumpleaños,aprobado,
+45,,,,fechas proximas con la primera fecha en un año mayor,node src/app.js  2013/12/31 2010/01/01,mostrar cumpleaños en el rango,muestra los cumpleaños,aprobado,
+,,,,,,,,,
+,,,,,,,,,
+,Conclusiones,,,,,,,,
+,,,,,,,,,
+,El año es irrelevante para el calculo de los cumpleaños,,,,,,,,
+,Se deben afinar los mensajes que se le entregan al usuario,,,,,,,,
+,Se le debe dar instrucciones de uso al usuario,,,,,,,,
+,El tipo de input que se le permite ingresar al usuario tiene muchas posibilidades de ser ingresado de manera erronea,,,,,,,,
+,Se debe decidir como manejar el problema de que la primera fecha sea superior a la segunda,,,,,,,,
+,"Se debe evitar que el programa se caiga  o no ejecute nada, debido a formatos incorrectos",,,,,,,,
+,Se debe restringir la cantidad de inputs a los necesarios para el calculo,,,,,,,,
+,"Al efectuarse la comparacion de fechas exclusivamente entre meses y dias, y asi, obviar el año, ocurren algunos problemas como el del test 42, que tiene una fecha 2 inferior a la uno, solo en cuanto a meses o dias, pero ocurre en 3 años mas, lo que debiera arrojar un intervalo en el año.",,,,,,,,
+,"El codigo ya arroja los cumpleaños del dia en caso de presentarse dos fechas iguales, por la construccion misma de los condicionales en la funcion compareDates",,,,,,,,
+,,,,,,,,,
+,Decisiones,,,,,,,,
+,Restringir a numeros enteros lo que se le pide que ingrese al usuario,,,,,,,,
+,Construir las fechas a validar de manera interna,,,,,,,,
+,se opta por usar regex para validar los digitos y luego librería para validar las fechas construidas,,,,,,,,
+,"Se decide construir un menu que de opcion unicamente a ingresar valores enteros de meses y dias, validados por regex y que coste de las preguntas precisas para no dejar al usuario ingresar mas informacion",,,,,,,,
+,Se decide tomar el problema de fecha1> fecha 2 de la siguiente forma: if( fecha 1 > fecha 2) se asginan un año imaginario para para tomar el intervalo hacia el futuro.,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,

@@ -52,10 +52,10 @@ const asignarYear = (a, b) =>{
     if(parseInt(a.substring(0,2)) > parseInt(b.substring(0,2))){
         yearB = today.getFullYear() + 1
     } else if(parseInt(a.substring(0,2)) === parseInt(b.substring(0,2))){
-        if(a.slice(3) >= b.slice(3)){
+        if(a.slice(3) > b.slice(3)){
             yearB = today.getFullYear() + 1
             
-        } else if(a.slice(3) < b.slice(3)){
+        } else if(a.slice(3) <= b.slice(3)){
             yearB = today.getFullYear()
         }
     } else {
