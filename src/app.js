@@ -56,6 +56,7 @@ let isValidInputFinFormatDate = isValidFormatDate(inputFin);
 
 if (!isValidInputInicioFormatDate || !isValidInputFinFormatDate) {
     console.log('Debes ingresar el formato de fecha: "YYYY/MM/DD"');
+    return false;
 }
 
 if (isValidInputInicio && isValidInputFin) {
