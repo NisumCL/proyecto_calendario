@@ -11,7 +11,6 @@ const fecha2 = new Date(fechaFin);
 
 const cumpleanios = [];
 
-
 function isValidDate(date) {
     let regex = new RegExp(
         /^([12]\d{3}\/(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01]))$/
