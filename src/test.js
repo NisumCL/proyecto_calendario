@@ -1,35 +1,33 @@
+//OK! refactorizarlo a un solo if...
 const isInformedInput = (input) => {
-    if (input === undefined) {
-        console.log("Ingresa una fecha undefined");
+    if (
+        input === undefined ||
+        input.trim() === "" ||
+        process.argv.length >= 5
+    ) {
+        console.log("Ingresar dos fechas");
         return false;
-    } else if (input.trim() === "") {
-        console.log("Ingresa una fecha");
-        return false;
-    } else if (process.argv.length >= 5) {
-        console.log("Solo hay que ingresar dos fechas");
-        return false;
-    } else {
-        return true;
     }
+    return true;
 };
 
 const isValidFormatDate = (date) => {
-    let regex = /^\d{4}\/\d{1,2}\/\d{1,2}$/;
+    const regex = /^\d{4}\/\d{1,2}\/\d{1,2}$/;
 
     if (!regex.test(date)) {
         return false;
     }
 
-    let parts = date.split("/");
-    let day = parseInt(parts[2], 10);
-    let month = parseInt(parts[1], 10);
-    let year = parseInt(parts[0], 10);
-
+    const parts = date.split("/");
+    const day = parseInt(parts[2], 10);
+    const month = parseInt(parts[1], 10);
+    const year = parseInt(parts[0], 10);
+    //ts isNaN
     if (year < 1000 || year > 3000 || month == 0 || month > 12) {
         return false;
     }
 
-    let monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    const monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
         monthLength[1] = 29;
@@ -38,21 +36,20 @@ const isValidFormatDate = (date) => {
     return day > 0 && day <= monthLength[month - 1];
 };
 
-const isValidDate = (fecha1, fecha2) => {
+const isValidDate = (startDate, finishDate) => {
     if (
-        fecha1.getFullYear() != fecha2.getFullYear() &&
-        fecha1.getMonth() <= fecha2.getMonth()
+        startDate.getFullYear() != finishDate.getFullYear() &&
+        startDate.getMonth() <= finishDate.getMonth()
     ) {
         console.log(
             "Tus fechas no deben ser de mas de un año, si quieres saber todos los cumpleaños, ingresa desde el 1 de enero hasta el 31 de diciembre"
         );
         return false;
     } else if (
-        fecha1.getFullYear() != fecha2.getFullYear() ||
-        fecha1.getMonth() >= fecha2.getMonth()
+        startDate.getFullYear() != finishDate.getFullYear() ||
+        startDate.getMonth() >= finishDate.getMonth() ||
+        startDate <= finishDate
     ) {
-        return true;
-    } else if (fecha1 <= fecha2) {
         return true;
     } else {
         console.log(

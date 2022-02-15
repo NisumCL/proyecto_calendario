@@ -8,11 +8,11 @@ const inputFin = process.argv[3];
 
 const cumpleanios = [];
 
-let isValidInput = test.isInformedInput(inputInicio, inputFin);
+const isValidInput = test.isInformedInput(inputInicio, inputFin);
 
-let isValidInputInicioFormatDate = test.isValidFormatDate(inputInicio);
+const isValidInputInicioFormatDate = test.isValidFormatDate(inputInicio);
 
-let isValidInputFinFormatDate = test.isValidFormatDate(inputFin);
+const isValidInputFinFormatDate = test.isValidFormatDate(inputFin);
 
 if (!isValidInputInicioFormatDate || !isValidInputFinFormatDate) {
     console.log('Debes ingresar el formato de fecha: "YYYY/MM/DD"');
@@ -20,10 +20,10 @@ if (!isValidInputInicioFormatDate || !isValidInputFinFormatDate) {
 }
 
 if (isValidInput) {
-    const fecha1 = new Date(inputInicio);
-    const fecha2 = new Date(inputFin);
+    const startDate = new Date(inputInicio);
+    const finishDate = new Date(inputFin);
 
-    let areValidDates = test.isValidDate(fecha1, fecha2);
+    let areValidDates = test.isValidDate(startDate, finishDate);
 
     if (areValidDates) {
         fs.createReadStream("mails_y_cumples_03.csv")
@@ -35,8 +35,8 @@ if (isValidInput) {
             .on("data", (dataRow) => {
                 if (
                     test.compararFecha(
-                        fecha1,
-                        fecha2,
+                        startDate,
+                        finishDate,
                         dataRow.cumpleanios.split("-")
                     )
                 ) {
