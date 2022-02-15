@@ -19,6 +19,7 @@
     "enquirer": "^2.3.6",
     "ez-inputs": "^1.0.0",
     "inquirer": "^8.2.0",
+    "ora": "^6.0.1",
     "terminal-kit": "^2.4.0",
     "validate-date": "^2.0.0",
     "yargs": "^17.3.1"

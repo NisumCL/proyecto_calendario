@@ -8,6 +8,25 @@ if (!process.argv[2]){
     hr.instruCCions()
 } 
 
+console.log(
+    
+    chalk.magenta(` **************************************\n`),
+    chalk.blue(`--------------------------------------\n`),
+    chalk.green(`     __   __   ____       ____     \n`),
+    chalk.cyan(`    / /  / /  / ___ \\    / __  \\   \n`),
+    chalk.green(`   / /__/ /  / /__/ /   / /   \\ \\  \n`),
+    chalk.green(`  /  __  /  / ____  \\  / /    / /  \n`),
+    chalk.cyan(` / /  / /  / /____/ / / /____/ /   \n`),
+    chalk.green(`/_/  /_/  /________/ /________/    \n`),
+    chalk.blue(`_____________________________________ \n`),
+    chalk.magenta(`*************************************\n`),
+    chalk.greenBright.bold(`*** Welcome to the birthdays app ***\n`),
+    chalk.magenta(`*************************************\n`),
+    chalk.blue(`------------------------------------- \n`)
+)
+
+
+
 const funcionCumpleannos = (a, b) => {
     if (!hr.validarFechas(a, b)) {
         console.log(chalk.red('Please use the required format'));

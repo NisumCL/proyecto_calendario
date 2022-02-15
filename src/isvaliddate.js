@@ -8,9 +8,9 @@ const isValidDate = (a) => {
         // let dateOk = regex.test(a);
         // return dateOk;
         
-    if(a.includes('-')){
-        return false
-    }
+    // if(a.includes('-')){
+    //     return false
+    // }
 
     if(validateDate(a, responseType="boolean", dateFormat="yy/mm/dd")){
         return true
