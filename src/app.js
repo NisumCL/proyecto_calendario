@@ -1,79 +1,54 @@
-require("dotenv").config();
-
 const parse = require("csv-parser");
 const fs = require("fs");
+const test = require("./test");
+const show = require("./show");
 
-const fechaInicio = process.argv[2];
-const fechaFin = process.argv[3];
-
-const fecha1 = new Date(fechaInicio);
-const fecha2 = new Date(fechaFin);
+const inputInicio = process.argv[2];
+const inputFin = process.argv[3];
 
 const cumpleanios = [];
 
+let isValidInput = test.isInformedInput(inputInicio, inputFin);
 
-function isValidDate(date) {
-    let regex = new RegExp(
-        /^([12]\d{3}\/(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01]))$/
-    );
-    let dateOk = regex.test(date);
-    return dateOk;
-}
-if (isValidDate(fechaInicio) && isValidDate(fechaFin)) {
-    console.log("Formato correcto");
-} else if (!isValidDate(fechaInicio)) {
-    console.log("Formato incorrecto de la primera fecha ingresada");
-    return false;
-} else if (!isValidDate(fechaFin)) {
-    console.log("Formato incorrecto de la segunda fecha ingresada");
-    return false;
-} else {
-    console.log("Formato de ambas fechas es invalido");
+let isValidInputInicioFormatDate = test.isValidFormatDate(inputInicio);
+
+let isValidInputFinFormatDate = test.isValidFormatDate(inputFin);
+
+if (!isValidInputInicioFormatDate || !isValidInputFinFormatDate) {
+    console.log('Debes ingresar el formato de fecha: "YYYY/MM/DD"');
     return false;
 }
-const mostrar = (datos) => {
-    for (i in datos) {
-        const a = parseInt(i) + 1;
-        console.log(a, ".- ", datos[i].cumpleanios, datos[i].apellido_y_nombre);
+
+if (isValidInput) {
+    const fecha1 = new Date(inputInicio);
+    const fecha2 = new Date(inputFin);
+
+    let areValidDates = test.isValidDate(fecha1, fecha2);
+
+    if (areValidDates) {
+        fs.createReadStream("mails_y_cumples_03.csv")
+            .pipe(
+                parse({
+                    delimiter: ",",
+                })
+            )
+            .on("data", (dataRow) => {
+                if (
+                    test.compararFecha(
+                        fecha1,
+                        fecha2,
+                        dataRow.cumpleanios.split("-")
+                    )
+                ) {
+                    cumpleanios.push(dataRow);
+                }
+            })
+            .on("end", () => {
+                show.mostrar(cumpleanios);
+            });
     }
-};
-const compararFecha = (fecha1, fecha2, cumple) => {
-    mesCumple = parseInt(cumple[1]);
-    diaCumple = parseInt(cumple[2]);
-    if (
-        mesCumple == fecha1.getMonth() + 1 &&
-        mesCumple == fecha2.getMonth() + 1
-    ) {
-        if (diaCumple >= fecha1.getDate() && diaCumple <= fecha2.getDate()) {
-            return true;
-        }
-    } else if (mesCumple === fecha1.getMonth() + 1) {
-        if (diaCumple >= fecha1.getDate()) {
-            return true;
-        }
-    } else if (mesCumple === fecha2.getMonth() + 1) {
-        if (diaCumple <= fecha2.getDate()) {
-            return true;
-        }
-    } else if (
-        mesCumple > fecha1.getMonth() + 1 &&
-        mesCumple < fecha2.getMonth() + 1
-    ) {
-        return true;
-    }
-    return false;
-};
-fs.createReadStream("mails_y_cumples_03.csv")
-    .pipe(
-        parse({
-            delimiter: ",",
-        })
-    )
-    .on("data", (dataRow) => {
-        if (compararFecha(fecha1, fecha2, dataRow.cumpleanios.split("-"))) {
-            cumpleanios.push(dataRow);
-        }
-    })
-    .on("end", () => {
-        mostrar(cumpleanios);
-    });
+
+    let mostrarData = show.mostrar;
+
+    let compararDate = test.compararFecha;
+}
