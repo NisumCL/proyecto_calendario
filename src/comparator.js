@@ -1,3 +1,4 @@
+// Refactorizandose ....... En proceso....
 function dateComparison(date1, date2, birthday) {
   const birthdayMonth = parseInt(birthday[1], 10);
   const birthdayDay = parseInt(birthday[2], 10);
@@ -19,4 +20,9 @@ function dateComparison(date1, date2, birthday) {
   return false;
 }
 
-module.exports = { dateComparison };
+function biggerDate(firstDate, secondDate) {
+  const differenceDate = secondDate - firstDate;
+  return differenceDate >= 0;
+}
+
+module.exports = { dateComparison, biggerDate };

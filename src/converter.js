@@ -26,4 +26,15 @@ function show(data) {
   });
 }
 
-module.exports = { dataToObject, show };
+function convertToDate(params) {
+  const arrayParams = params.split('/');
+  const date = new Date();
+  date.setFullYear(
+    date.getFullYear(),
+    parseInt(arrayParams[1], 10) - 1,
+    parseInt(arrayParams[2], 10)
+  );
+  return date;
+}
+
+module.exports = { dataToObject, show, convertToDate };
