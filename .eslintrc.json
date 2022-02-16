@@ -1,16 +1,11 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es2021": true
-    },
-    "extends": [
-        "standard"
-    ],
-    "parserOptions": {
-        "ecmaVersion": 12
-    },
-    "rules": {
-    },
-    "plugins": ["prettier"]
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "indent": ["error", 2]
+  },
+  "env": {
+    "node": true
+  }
 }
