@@ -8,7 +8,7 @@ function show(data) {
 function convertToDate(inputDateString) {
   const arrayInputDateString = inputDateString.split('/');
   const date = new Date();
-  date.setUTCFullYear(
+  date.setFullYear(
     date.getFullYear(),
     parseInt(arrayInputDateString[1], 10) - 1,
     parseInt(arrayInputDateString[2], 10)
@@ -20,7 +20,7 @@ function convertToDate(inputDateString) {
 function matchThisYear(dateString) {
   const arrayDateString = dateString.split('-');
   const date = new Date();
-  date.setUTCFullYear(
+  date.setFullYear(
     date.getFullYear(),
     parseInt(arrayDateString[1], 10) - 1,
     parseInt(arrayDateString[2], 10)

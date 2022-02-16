@@ -1,29 +1,30 @@
 const { dataFile } = require('./reader');
 const { dataToObject, show, convertToDate } = require('./converter');
 const { isValidDateFormat } = require('./validator');
-const { biggerDate } = require('./comparator');
-
-// function filteredBirthdays(firstDate, secondDate, workersData) {}
+const { biggerDate, filteredBirthdays } = require('./comparator');
 
 try {
   const startDate = process.argv[2];
   const endDate = process.argv[3];
-  // const birthdayList = [];
+  let birthdayList = [];
   if (isValidDateFormat(startDate) && isValidDateFormat(endDate)) {
     const firstDate = convertToDate(startDate);
     const secondDate = convertToDate(endDate);
     const fileInfo = dataFile('./mails_y_cumples_03.csv');
     const workersData = dataToObject(fileInfo);
     if (biggerDate(firstDate, secondDate)) {
-      // Filtrar cumpleaños entre primera y segunda fecha
-      // eslint-disable-next-line no-console
-      console.log('Fecha 1 es menor o igual que fecha 2');
+      birthdayList = filteredBirthdays(firstDate, secondDate, workersData);
     } else {
-      // Filtrar cumpleaños entre segunda y primera fecha
-      // eslint-disable-next-line no-console
-      console.log('Fecha 1 es mayor que fecha 2');
+      const startYear = new Date();
+      startYear.setMonth(0, 1);
+      const endYear = new Date();
+      endYear.setMonth(11, 31);
+      birthdayList = [
+        ...filteredBirthdays(firstDate, endYear, workersData),
+        ...filteredBirthdays(startYear, secondDate, workersData),
+      ];
     }
-    show(workersData);
+    show(birthdayList);
   }
 } catch (e) {
   // eslint-disable-next-line no-console
