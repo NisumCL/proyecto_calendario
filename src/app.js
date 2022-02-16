@@ -9,7 +9,10 @@ try {
   const startDate = process.argv[2];
   const endDate = process.argv[3];
   // const birthdayList = [];
-  if (isValidDateFormat(startDate) && isValidDateFormat(endDate)) {
+  const startDate = new Date(process.argv[2]);
+  const endDate = new Date(process.argv[3]);
+  
+  if (!isNaN(startDate) && !isNaN(endDate)) {
     const firstDate = convertToDate(startDate);
     const secondDate = convertToDate(endDate);
     const fileInfo = dataFile('./mails_y_cumples_03.csv');
