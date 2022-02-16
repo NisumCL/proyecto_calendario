@@ -15,8 +15,8 @@ const isValidInputInicioFormatDate = test.isValidFormatDate(inputInicio);
 const isValidInputFinFormatDate = test.isValidFormatDate(inputFin);
 
 if (!isValidInputInicioFormatDate || !isValidInputFinFormatDate) {
-    console.log('Debes ingresar el formato de fecha: "YYYY/MM/DD"');
-    return false;
+    console.log('Debes ingresar exactamente dos fechas en el formato de fecha: "YYYY/MM/DD"');
+    return false
 }
 
 if (isValidInput) {
