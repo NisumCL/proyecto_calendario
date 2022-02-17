@@ -9,22 +9,22 @@ const chalk = require('chalk')
 
 const main = async() =>{
     await pausa
-    const { fecha1, fecha2 } = await mainMenu()
+    const { startDateArray, endDateArray } = await mainMenu()
     //const fechaInicio = process.argv[2];
-    const fechaInicio = `2020/${fecha1[1]}/${fecha1[0]}`
-    const fechaFin = `2020/${fecha2[1]}/${fecha2[0]}`
-    if(fecha1.length === 0 || fecha2.length === 0){
-        return;
-    } else {
-        console.log(chalk.green(`Searching from ${fecha1[1]}/${fecha1[0]} to ${fecha2[1]}/${fecha2[0]}`))
-    }
-    // const fechaFin = process.argv[3];
+    const DateOne = `2020/${startDateArray[1]}/${startDateArray[0]}`
+    const DateTwo = `2020/${endDateArray[1]}/${endDateArray[0]}`
+    // if(startDateArray.length === 0 || endDateArray.length === 0){
+    //     return;
+    // } else {
+    //     console.log(chalk.green(`Searching from ${startDateArray[1]}/${startDateArray[0]} to ${endDateArray[1]}/${endDateArray[0]}`))
+    // }
+    // const DateTwo = process.argv[3];
     
-    const startDate = new Date(fechaInicio);
-    const endDate = new Date(fechaFin);
+    const startDate = new Date(DateOne);
+    const endDate = new Date(DateTwo);
     const cumpleanios = [];
 
-    if (!isValidDate(fechaInicio) || !isValidDate(fechaFin)) {
+    if (!isValidDate(DateOne) || !isValidDate(DateTwo)) {
             console.log(chalk.red('Please provide two valid dates'));
             return false;
         }
