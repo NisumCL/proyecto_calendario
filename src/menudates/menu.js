@@ -1,4 +1,3 @@
-'use strict'
 const { questionsMenu } = require('./question-choices.js')
 const { assignOutputs } = require('./outputassignment.js')
 

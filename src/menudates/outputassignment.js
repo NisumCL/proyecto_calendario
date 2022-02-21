@@ -1,7 +1,5 @@
-'use strict'
 const { searchInRange } = require('./questions-searchinrange.js')
 const { returnDatesinMonth } = require('./returndatesinmonth.js')
-
 
 const assignOutputs = async(selection) => { 
     let startDate = null

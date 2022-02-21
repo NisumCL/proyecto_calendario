@@ -1,5 +1,4 @@
-var validateDate = require('validate-date')
-const chalk = require('chalk');
+const validateDate = require('validate-date')
 
 const isValidDate = (a) => {
     let year = a.getFullYear()
