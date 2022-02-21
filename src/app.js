@@ -1,7 +1,5 @@
 const { dataFile } = require('./reader');
-const { dataToObject, show, convertToDate } = require('./converter');
-const { isValidDateFormat } = require('./validator');
-const { biggerDate, filteredBirthdays } = require('./comparator');
+const { dataToObject } = require('./converter');
 const { principalMain } = require('./options')
 
 try {
