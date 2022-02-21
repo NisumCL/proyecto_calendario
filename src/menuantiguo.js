@@ -112,7 +112,7 @@ const mainMenu = async () =>{
     const fecha2 = []
     const today = new Date()
     // const hoy = parseInt(today.getDate())
-    do{
+    
         const esteMes = today.getMonth()+1
         const proximoMes = today.getMonth()+2
         const proximoproximoMes = today.getMonth()+3
@@ -159,17 +159,25 @@ const mainMenu = async () =>{
             fecha1,
             fecha2
         };
-        
-    }while(selection!= 'Exit')
+
     // console.log(fecha1, fecha2)
 };
 
-// mainMenu()
+mainMenu()
 
 module.exports = {
     mainMenu,
     pausa,
 }
+
+
+// const startDate = new Date()
+    // startDate.setDate(1)
+    // const endDate = new Date() 
+    // const numDays = new Date(endDate.getFullYear(), endDate.getMonth(), 0).getDate()
+    // endDate.setDate(numDays)
+
+
 
 
 
