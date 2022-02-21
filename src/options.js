@@ -1,5 +1,5 @@
 const { printMain } = require('./main')
-const { dataToObject, show, convertToDate } = require('./converter');
+const { show, convertToDate } = require('./converter');
 const { isValidDateFormat } = require('./validator');
 const { biggerDate, filteredBirthdays } = require('./comparator');
 
