@@ -6,40 +6,43 @@ const { compareDates } = require("./comparedates")
 const { showDates } = require("./showDates.js")
 const { mainMenu } = require("./menudates/menu.js")
 const { pausa } = require("./menudates/pauses.js")
-const { birthDateFormat } = require('./birthdateformat.js')
-const chalk = require('chalk')
+const { stringToDate, formatDate } = require('./stringtodate.js')
+const chalk = require('chalk');
 
 const main = async() =>{
-    const { startDate, endDate } = await mainMenu()
-    await pausa()
-    if(startDate === null || endDate === null){
-        return;
-    } else {
-        console.log(chalk.green(`Searching from ${startDate} to ${endDate}`))
-    }
+  const { startDate, endDate } = await mainMenu()
+
+  // if (!isValidDate(startDate) || !isValidDate(endDate)) {
+  //   console.log(chalk.red('Please provide two valid dates'));
+  //   return;
+  // } 
+  
+  if(startDate === null || endDate === null){
+    return
+  } else {
+    console.log(chalk.magenta(`Searching from ${formatDate(startDate)} to ${formatDate(endDate)}`))
+  }
+  
+
+  const birthdaysArray = [];
+  fs.createReadStream("mails_y_cumples_03.csv")
+  .pipe(
+    parse({
+        delimiter: ","
+    })
+  )
+  .on("data", (dataRow) => {
     
-    // if (!isValidDate(startDate) || !isValidDate(endDate)) {
-      //         console.log(chalk.red('Please provide two valid dates'));
-      //         return false;
-      //     }
-      
-    const birthdaysArray = [];
-    fs.createReadStream("mails_y_cumples_03.csv")
-        .pipe(
-            parse({
-                delimiter: ",",
-            })
-        )
-        .on("data", (dataRow) => {
-          if (compareDates(startDate, endDate, birthDateFormat(dataRow.cumpleanios))){
-            birthdaysArray.push(dataRow);
-          }
-        })
-        .on("end", () => {
-          pausa()
-          showDates(birthdaysArray)
-          mainMenu()
-        });
+    if (compareDates(startDate, endDate, stringToDate(dataRow.cumpleanios))){
+      birthdaysArray.push(dataRow);
+    }
+  })
+  .on("end", () => {
+    pausa()
+    showDates(birthdaysArray)
+    main()
+  })
+
 }
 
 main()

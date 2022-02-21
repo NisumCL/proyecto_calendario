@@ -12,7 +12,7 @@ const firstQuestion = {
 const questionsMenu = async() =>{
     // console.clear()
     console.log(chalk.magenta(' ************************************************'))
-    console.log(chalk.cyan('   Welcome to the app 👋🏻, please, select an option            '))
+    console.log(chalk.cyan('   Welcome to the app, please, select an option   '))
     console.log(chalk.magenta(' ************************************************'))
     const {selection} = await inquirer.prompt(firstQuestion)
     return selection

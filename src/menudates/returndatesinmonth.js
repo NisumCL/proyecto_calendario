@@ -1,5 +1,4 @@
 'use strict'
-const inquirer = require('inquirer')
 
 const returnDatesinMonth = (a) => {
     const month = new Date().getMonth() + a

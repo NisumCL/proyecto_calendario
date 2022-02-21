@@ -1,6 +1,4 @@
 'use strict'
-const inquirer = require('inquirer')
-const chalk = require('chalk')
 const { questionsMenu } = require('./question-choices.js')
 const { assignOutputs } = require('./outputassignment.js')
 
@@ -18,4 +16,3 @@ module.exports = {
     mainMenu,
 }
 
-mainMenu()

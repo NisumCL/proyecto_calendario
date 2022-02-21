@@ -7,7 +7,7 @@ const pausa = async ()=>{
         {
             type: 'input',
             name: 'Enter',
-            message: `Press ${chalk.green('Enter')} to continue  \n`
+            message: `Press ${chalk.magenta('Enter')} to continue  \n`
         }
     ]
     await inquirer.prompt(questionContinue)

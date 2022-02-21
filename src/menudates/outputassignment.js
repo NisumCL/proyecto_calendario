@@ -1,5 +1,4 @@
 'use strict'
-const inquirer = require('inquirer')
 const { searchInRange } = require('./questions-searchinrange.js')
 const { returnDatesinMonth } = require('./returndatesinmonth.js')
 
@@ -27,8 +26,7 @@ const assignOutputs = async(selection) => {
         startDate
         endDate
     } 
-    console.log(startDate,
-        endDate)
+
     return{
         startDate,
         endDate
