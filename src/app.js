@@ -2,11 +2,11 @@ require("dotenv").config()
 const parse = require("csv-parser")
 const fs = require("fs")
 const { compareDates } = require("./comparedates")
-const { isValidDate } = require("./isvaliddate.js")
 const { showDates } = require("./showDates.js")
 const { mainMenu } = require("./menudates/menu.js")
 const { pausa } = require("./menudates/pauses.js")
 const { stringToDate, formatDate } = require('./stringtodate.js')
+const { isValidDate } = require("./isvaliddate.js")
 const chalk = require('chalk');
 
 const main = async() =>{
