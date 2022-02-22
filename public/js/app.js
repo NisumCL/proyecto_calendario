@@ -1,9 +1,10 @@
 const birthdaysForm = document.querySelector('form')
 const search = document.querySelector('input')
+const starting = document.querySelector('#Startdate')
+const ending = document.querySelector('#Enddate')
 const messageOne = document.querySelector('#message-1')
 const messageTwo = document.querySelector('#message-2')
-id="Startdate
-id="Enddate"
+
 
 
 birthdaysForm.addEventListener('submit', (e) =>{

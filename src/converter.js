@@ -1,3 +1,4 @@
+/* eslint-disable */
 function show(data) {
   data.forEach(person => {
     // eslint-disable-next-line no-console

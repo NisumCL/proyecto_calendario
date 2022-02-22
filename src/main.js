@@ -1,3 +1,4 @@
+/* eslint-disable */
 function printMain () {
     console.clear()
     console.log('-------- MENU --------')
@@ -5,8 +6,8 @@ function printMain () {
     console.log('2. Obtain the current month birthdays.')
     console.log('3. Obtain the following month birthdays.')
     console.log('0. Exit.\n')
-}
-
-    module.exports = {
+  }
+  
+  module.exports = {
     printMain
-}
+  }
