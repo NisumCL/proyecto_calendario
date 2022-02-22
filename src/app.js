@@ -18,7 +18,10 @@ const { principalMain } = require('./options');
     console.log('FIN');
   })();
 
- 
+  let counter= 0;
 
-
+  // setInterval(()=>{
+  //   console.log('TIMEOUT',counter);
+  //   counter++;
+  // },1000);
 // git config --global core.autocrlf true
