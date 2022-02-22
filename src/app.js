@@ -1,48 +1,32 @@
-require("dotenv").config()
-const parse = require("csv-parser")
-const fs = require("fs")
-const { compareDates } = require("./comparedates")
-const { showDates } = require("./showDates.js")
-const { mainMenu } = require("./menudates/menu.js")
-const { pausa } = require("./menudates/pauses.js")
-const { stringToDate, formatDate } = require('./stringtodate.js')
-const { isValidDate } = require("./isvaliddate.js")
-const chalk = require('chalk');
+const { dataFile } = require('./reader');
+const { dataToObject, show, convertToDate } = require('./converter');
+const { isValidDateFormat } = require('./validator');
+const { biggerDate, filteredBirthdays } = require('./comparator');
 
-const main = async() =>{
-  const { startDate, endDate } = await mainMenu()
-
-  if(startDate === null || endDate === null){
-    return
-  } else {
-    console.log(chalk.magenta(`Searching from ${formatDate(startDate)} to ${formatDate(endDate)}`))
-  }
-  
-  if (!isValidDate(startDate) || !isValidDate(endDate)) {
-    console.log(chalk.red('Please provide two valid dates'));
-    return;
-  } 
-  const birthdaysArray = [];
-  fs.createReadStream("mails_y_cumples_03.csv")
-  .pipe(
-    parse({
-        delimiter: ","
-    })
-  )
-  .on("data", (dataRow) => {
-    
-    if (compareDates(startDate, endDate, stringToDate(dataRow.cumpleanios))){
-      birthdaysArray.push(dataRow);
+try {
+  const startDate = process.argv[2];
+  const endDate = process.argv[3];
+  let birthdayList = [];
+  if (isValidDateFormat(startDate) && isValidDateFormat(endDate)) {
+    const firstDate = convertToDate(startDate);
+    const secondDate = convertToDate(endDate);
+    const fileInfo = dataFile('./mails_y_cumples_03.csv');
+    const workersData = dataToObject(fileInfo);
+    if (biggerDate(firstDate, secondDate)) {
+      birthdayList = filteredBirthdays(firstDate, secondDate, workersData);
+    } else {
+      const startYear = new Date();
+      startYear.setMonth(0, 1);
+      const endYear = new Date();
+      endYear.setMonth(11, 31);
+      birthdayList = [
+        ...filteredBirthdays(firstDate, endYear, workersData),
+        ...filteredBirthdays(startYear, secondDate, workersData),
+      ];
     }
-  })
-  .on("end", () => {
-    pausa()
-    showDates(birthdaysArray)
-    main()
-  })
-
+    show(birthdayList);
+  }
+} catch (e) {
+  // eslint-disable-next-line no-console
+  console.log(e.message);
 }
-
-main()
-
-
