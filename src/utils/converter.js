@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/converter.js
 /* eslint-disable */
 function show(data) {
   data.forEach(person => {
@@ -6,6 +7,8 @@ function show(data) {
   });
 }
 
+=======
+>>>>>>> 3a996795d29a0f0fb5921fceaaffd9676f774c45:src/utils/converter.js
 function convertToDate(inputDateString) {
   const arrayInputDateString = inputDateString.split('/');
   const date = new Date();
@@ -51,4 +54,4 @@ function dataToObject(data) {
   return dataFormated;
 }
 
-module.exports = { dataToObject, show, convertToDate };
+module.exports = { dataToObject, convertToDate };
