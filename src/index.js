@@ -2,121 +2,118 @@
 const path= require('path');
 const express = require('express')
 const hbs = require('hbs')
-const geocode = require('./utils/geocode')
-const forecast = require('./utils/forecast')
-
-
+const parser = require('body-parser')
+const urlencodedParser = parser.urlencoded({ extended: false })
+const { bigMain } = require('./app')
 
 const app = express()
-const port = process.env.PORT || 3000
+// const port = process.env.PORT || 3000
 
-//define paths for express config
+// //define paths for express config
 const publicDirectoryPath = path.join(__dirname, '../public')
-const viewsPath = path.join(__dirname, '../templates/views')
+const viewsPath = path.join(__dirname, '../templates')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
-
+app.use(urlencodedParser)
+app.use(parser.json())
 //set up handlebars engine and views locations
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
-//set up static directory to serve
+// //set up static directory to serve
 app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) =>{
-    res.render('index',{
-        title: 'Weather App 🌦️',
-        nombre: 'Fran L'
+    res.render('index', {
+        title: 'NISUM Birthdays',
+        body: 'birthdays list'
     })
-})
-app.get('/about', (req, res)=>{
-    res.render('about',{
-        title: 'About',
-        nombre: 'Fran L',
-        src: '/img/imgbin_bender-fan-art-png.png'
-    })
+    
 })
 
-// app.get('/products', (req, res) =>{
-//     if(!req.query.search){
-//         return res.send({
-//             error: 'You must provide a search term'
-//         })
-//     } else{
-//         console.log(req.query.search)
-//         res.send({
-//             products: []
-//         })
-//     }
+app.get('/thismonth', (req, res) =>{
+    res.render('thismonth', {
+        title: 'Birthdays in the month',
+        // subtitle: 'The birthdates por the interval are: ',
+        // body: 'birthdays list'
+    })
+})
 
-// })
+app.get('/nextmonth', (req, res) =>{
+    res.render('nextmonth', {
+        title: 'Birthdays in the next month',
+        // subtitle: 'The birthdates por the interval are: ',
+        // body: 'birthdays list'
+    })
+})
 
-app.get('/weather', (req, res)=>{
-    if(!req.query.address){
+app.get('/searchinrange', (req, res) =>{
+    res.render('searchinrange', {
+        title: 'Birthdays in the Range',
+        // subtitle: 'The birthdates por the interval are: ',
+        // body: 'birthdays list'
+    })
+})
+app.get('/theDates', urlencodedParser, (req, res)=>{
+    if(!req.body){
         return res.send({
-            error: 'You must provide an address to look for 😅'
+            error: 'You must provide two dates to search inbetween 😅'
         })
-    } 
-    geocode(req.query.address, (error, {latitude, longitude, location} = {}) => {
-        if(error){
-            return res.send({error})
-        }
-        
-        forecast( latitude, longitude, (error, forecastData) =>{
-            if(error){
-                return res.send({error})
-            } 
-            res.send({
-                forecast: forecastData,
-                location,
-                latitude,
-                longitude
-            })
+    }
+    // forecast( latitude, longitude, (error, forecastData) =>{
+    //     if(error){
+    //         return res.send({error})
+    //     } 
+    //     res.send({
+    //         forecast: forecastData,
+    //         location,
+    //         latitude,
+    //         longitude
+    //     })
+    // })
+    bigMain( req.body.startDate, req.body.endDate ) => {
+        res.send({
+            res.birthdaysList
         })
-    })
-
-})
-
-app.get('/help', (req, res)=>{
-    res.render('help',{
-        title: 'Help',
-        help_message: 'This is a help message, if you have some question, ask God, because this is nothing else than a nice lorem ipsum.',
-        nombre : 'Fran L'
-    })
-})
-// el asterisco es para atrapar cualquier ruta que no este especificada, que tire error.
-app.get('/help/*', (req, res)=>{
-    res.render('404_no_help_article',{
-        title: '404',
-        errorMessage: '404 error: Help article not Found. Please try the urls on top',
-        nombre : 'Fran L'
-    })
-})
-
-app.get('*', (req, res)=>{
-    res.render('404',{
-        title: '404',
-        errorMessage: '404 error: Page not Found. Please try the urls on top',
-        nombre : 'Fran L'
-    })
+    }
 })
 
 
+app.get('*', function(req, res){
+    res.render('errorpage');
+});
 
-// app.get('/help', (req, res)=>{
-//     res.send([{
-//         nombre: 'Fran',
-//         age: 39
-//     },
-//     {
-//         nombre: 'Byron',
-//         age: 17
-//     }])
+
+
+
+// app.get('/birthdays', (req, res)=>{
+//     if(!req.query.datesrange){
+//         return res.send({
+//             error: 'You must a range to search for 😅'
+//         })
+//     } 
+
+//     bigMain(req.query.datesrange, (error, {birthdaysList} = {}) => {
+//         if(error){
+//             return res.send({error})
+//         }
+//         res.send({
+//             birthdaysList
+//         })
+//     })
+
 // })
 
 
-app.listen(port, () =>{
-    console.log('server is up and port 3000' + port)
-})
+
+
+
+
+
+
+app.listen(3000);
+// app.listen(port, () =>{
+//     console.log('server is up and port 3000' + port)
+// })
 

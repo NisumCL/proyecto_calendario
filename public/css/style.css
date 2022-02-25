@@ -72,3 +72,16 @@ button:hover{
     background-color: rgb(6, 108, 175);
     
 }
+
+.cajaresultados{
+    margin-top: 2%;
+    padding: 2%;
+}
+
+#formulario{
+    margin-top: 10px;
+}
+
+#message-1, #message-2{
+    color:blue;
+}
