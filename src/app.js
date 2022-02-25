@@ -1,12 +1,20 @@
-const { dataFile } = require('./reader');
-const { dataToObject } = require('./converter');
-const { principalMain } = require('./options')
+const express = require('express');
+const { actualMonthService, nextMonthService } = require('./utils/service');
 
-try {
-  const fileInfo = dataFile('./mails_y_cumples_03.csv');
-  const workersData = dataToObject(fileInfo);
-  principalMain(workersData)
-}catch (e) {
+const app = express();
+const port = 3000;
+
+app.get('/birthday_month_course', (req, res) => {
+  const birthdays = actualMonthService();
+  res.send(birthdays);
+});
+
+app.get('/birthday_next_month', (req, res) => {
+  const birthdays = nextMonthService();
+  res.send(birthdays);
+});
+
+app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log(e.message);
-}
+  console.log('Server is up on port 3000.');
+});
