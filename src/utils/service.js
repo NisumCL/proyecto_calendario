@@ -1,3 +1,4 @@
+/* eslint-disable */
 const { filteredBirthdays, biggerDate } = require('./comparator');
 const { dataFile } = require('./reader');
 const { dataToObject, convertToDate } = require('./converter');

@@ -3,7 +3,7 @@
 body{
     background-color: rgb(8, 124, 201);
     font-family: 'Monda', sans-serif;
-    max-width: 650px;
+    max-width: 800px;
     margin:0 auto;
     padding: 0 16px;
     display: flex;
@@ -20,9 +20,9 @@ h1{
     font-size: 45px;
 }
 
-p, span, label{
+span, label, #message-1{
     color: cyan;
-    font-size: 1.1em;
+    font-size: 1.0em;
 }
 #bodycontent{
     padding: 0% 2%;
@@ -82,6 +82,7 @@ button:hover{
     margin-top: 10px;
 }
 
-#message-1, #message-2{
+#message-2{
     color:blue;
+    font-size: smaller;
 }
