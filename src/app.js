@@ -1,55 +1,34 @@
-const parse = require("csv-parser");
-const fs = require("fs");
-const test = require("./test");
-const show = require("./show");
-//const read = require("./read");
+const express = require('express');
+const { actualMonthService, nextMonthService, betweenTwoDatesService } = require('./utils/service');
+const { isValidDateFormat } = require('./utils/validator');
 
-const inputInicio = process.argv[2];
-const inputFin = process.argv[3];
+const app = express();
+const port = 3000;
 
-const cumpleanios = [];
+app.get('/birthday_month_course', (req, res) => {
+  const birthdays = actualMonthService();
+  res.send(birthdays);
+});
 
-const isValidInput = test.isInformedInput(inputInicio, inputFin);
+app.get('/birthday_next_month', (req, res) => {
+  const birthdays = nextMonthService();
+  res.send(birthdays);
+});
 
-const isValidInputInicioFormatDate = test.isValidFormatDate(inputInicio);
+app.get('/birthday_between_dates', (req, res) => {
+  const { startDate, endDate } = req.query;
 
-const isValidInputFinFormatDate = test.isValidFormatDate(inputFin);
+  if (!startDate || !isValidDateFormat(startDate)) {
+    res.send({ error: 'Problems with startDate' });
+  }
+  if (!endDate || !isValidDateFormat(endDate)) {
+    res.send({ error: 'Problems with endDate' });
+  }
+  const birthdays = betweenTwoDatesService(startDate, endDate);
+  res.send(birthdays);
+});
 
-if (!isValidInputInicioFormatDate || !isValidInputFinFormatDate) {
-    console.log('Debes ingresar el formato de fecha: "YYYY/MM/DD"');
-    return false;
-}
-
-if (isValidInput) {
-    const startDate = new Date(inputInicio);
-    const finishDate = new Date(inputFin);
-
-    let areValidDates = test.isValidDate(startDate, finishDate);
-
-    if (areValidDates) {
-        fs.createReadStream("mails_y_cumples_03.csv")
-            .pipe(
-                parse({
-                    delimiter: ",",
-                })
-            )
-            .on("data", (dataRow) => {
-                if (
-                    test.compararFecha(
-                        startDate,
-                        finishDate,
-                        dataRow.cumpleanios.split("-")
-                    )
-                ) {
-                    cumpleanios.push(dataRow);
-                }
-            })
-            .on("end", () => {
-                show.calculateBirthdate(cumpleanios);
-            });
-    }
-
-    let mostrarData = show.calculateBirthdate;
-
-    let compararDate = test.compararFecha;
-}
+app.listen(port, () => {
+  // eslint-disable-next-line no-console
+  console.log('Server is up on port 3000.');
+});
