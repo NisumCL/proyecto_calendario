@@ -1,11 +1,13 @@
 body {
     color: orange;
+    background-color: #59ca64;
 }
 
 .main-content {
     font-family: Arial;
     background-color: #357C3C;
-    color: #D82148;
+    color: #f0456a;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     max-width: 650px;
     margin: 0 auto;
     padding: 0 16px;
@@ -21,7 +23,7 @@ body {
 }
 
 .footer-content {
-    border-top: 1px solid #D82148;
+    border-top: 1px solid #f0456a;
     margin-top: 16px;
     padding: 16px 0;
 }
@@ -32,8 +34,15 @@ h1 {
 }
 
 .header-content a {
-    color: #D82148;
+    color: #357C3C;
+    padding: 5px;
     margin-right: 16px;
     text-decoration: none;
+    background-color: #f0456a;
 }
 
+.header-content a:hover{
+    color: #f0456a;
+    background-color: #357C3C;
+    border: 1px solid #f0456a;
+}
