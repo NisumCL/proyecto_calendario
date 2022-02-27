@@ -19,6 +19,11 @@ body {
 .header-content{
     margin-top: 16px;
     margin-bottom: 48px;
+}
+
+.table-content {
+    background-color: whitesmoke;
+    padding: 0 10px;
     flex-grow: 1;
 }
 
@@ -26,6 +31,9 @@ body {
     border-top: 1px solid #f0456a;
     margin-top: 16px;
     padding: 16px 0;
+}
+.text-content {
+    padding-bottom: 10px;
 }
 
 h1 {
@@ -44,5 +52,5 @@ h1 {
 .header-content a:hover{
     color: #f0456a;
     background-color: #357C3C;
-    border: 1px solid #f0456a;
+    border: 3px solid #f0456a;
 }
