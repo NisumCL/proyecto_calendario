@@ -10,28 +10,15 @@
     <title>Index</title>
 </head>
 <body>
-     <div class="content">
-        <header>
-            <h1>{{title}}</h1>
-        </header>
-    </div>
-    <div class="content-2">
-        <a href="/currentMonth">Current Month</a>
-        <a href="/nextMonth">Next Month</a>
-        <a href="/betweenDates">Between Dates</a>
-        <p>Choose an option : </p>
-        <section>
-            <p class="p-index">1.- The Current month option will give you as a result all the people who have birthdays in the current month. <br>
-            2.- The Next month option will give you as a result all the people who have birthdays in the next month. <br>
-            3.- The Between dates month option will give you as a result all the people who have birthdays in the dates range that you entered </p>
-        </section>
-    </div>
-     
-    <div class="content-3">
-        <p>Tabla con los resultados</p>
-    </div>
-    
+    <div class="main-content">
+        <div class="header-content">
+            {{>header}}
+        </div>
 
-    {{>footer}}
+        <div class="footer-content">
+            {{>footer}}
+        </div>
+        
+    </div>
 </body>
 </html>

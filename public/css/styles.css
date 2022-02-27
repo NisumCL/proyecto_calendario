@@ -1,6 +1,11 @@
 body {
-    color: #219F94;
-    font-family: arial;
+    color: orange;
+}
+
+.main-content {
+    font-family: Arial;
+    background-color: #357C3C;
+    color: #D82148;
     max-width: 650px;
     margin: 0 auto;
     padding: 0 16px;
@@ -9,74 +14,26 @@ body {
     min-height: 100vh;
 }
 
-.content {
-    background-color: #C1DEAE;
-    display: inline-block;
-    text-align: center;
-}
-
-.content-2 {
-    padding: 20px;
-    height: 200px;
-    display: inline-block;
-    text-align: center;
-}
-
-.content-2 a {
-    color: #C1DEAE;
-    padding: 5px;
-    margin-right: 16px;
-    text-decoration: none;
-    transition: background-color .8s;
-    background-color: #219F94;
-}
-
-.content-2 a:hover{
-    color: #219F94;
-    background-color: #C1DEAE;
-    border: 1px solid #219F94;
-}
-
-.content-3 {
-    flex-grow: 1;
-    padding: 10px;
-    background-color: #C1DEAE;
-}
-
-footer {
-    color: #219F94;
-    font-size: 12px;
-    border-top: 1px solid #eeeeee;
-    margin-top: 16px;
-    padding: 16px 0;
-    background-color: #C1DEAE;
-    display: inline-block;
-    text-align: center;
-}
-
-header {
+.header-content{
     margin-top: 16px;
     margin-bottom: 48px;
+    flex-grow: 1;
+}
+
+.footer-content {
+    border-top: 1px solid #D82148;
+    margin-top: 16px;
+    padding: 16px 0;
 }
 
 h1 {
     font-size: 40px;
     margin-bottom: 16px;
 }
-header a {
-    color: #C1DEAE;
-    padding: 5px;
+
+.header-content a {
+    color: #D82148;
     margin-right: 16px;
     text-decoration: none;
-    transition: background-color .8s;
-    background-color: #219F94;
-}
-section p{
-    font-size: 10px;
 }
 
-header a:hover{
-    color: #219F94;
-    background-color: #C1DEAE;
-    border: 1px solid #219F94;
-}
