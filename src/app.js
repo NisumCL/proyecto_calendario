@@ -2,6 +2,7 @@ const parse = require("csv-parser");
 const fs = require("fs");
 const test = require("./test");
 const show = require("./show");
+//const read = require("./read");
 
 const inputInicio = process.argv[2];
 const inputFin = process.argv[3];
@@ -44,11 +45,11 @@ if (isValidInput) {
                 }
             })
             .on("end", () => {
-                show.mostrar(cumpleanios);
+                show.calculateBirthdate(cumpleanios);
             });
     }
 
-    let mostrarData = show.mostrar;
+    let mostrarData = show.calculateBirthdate;
 
     let compararDate = test.compararFecha;
 }
