@@ -6,27 +6,24 @@ const { actualMonthService, nextMonthService, betweenTwoDatesService } = require
 const { isValidDateFormat } = require('./utils/validator');
 
 const app = express()
-// const port = process.env.PORT || 3000
 
-// //define paths for express config
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
-//set up handlebars engine and views locations
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
-// set up static directory to serve
 app.use(express.static(publicDirectoryPath))
+
 
 app.get('', (req, res) =>{
     res.render('index', {
         title: 'NISUM Birthdays',
     })
-    
 })
+
 
 app.get('/birthday_month_course', (req, res) => {
     const birthdays = actualMonthService();
@@ -41,8 +38,6 @@ app.get('/birthday_next_month', (req, res) => {
 
 app.get('/birthday_between_dates', (req, res) => {
     const { startDate, endDate } = req.query;
-    console.log(req.query)
-
     if (!startDate || !isValidDateFormat(startDate)) {
         res.send({ error: 'Problems with startDate' });
     }
@@ -53,12 +48,14 @@ app.get('/birthday_between_dates', (req, res) => {
     res.send(birthdays);
 });
 
+
 app.get('*', function(req, res){
     res.render('errorpage');
 });
 
-app.listen(3000);
-// app.listen(port, () =>{
-//     console.log('server is up and port 3000' + port)
-// })
+
+const port = 3000
+app.listen(port, () =>{
+    console.log('server is up and port ' + port)
+})
 
