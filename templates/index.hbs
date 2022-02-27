@@ -6,38 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/img/nubi.jpg">
     <link rel="stylesheet" href="css/style.css">
-    <title>Birthdays APP</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>searchinrange</title>
 </head>
-<body> 
+<body>
     <div id="header">
         <h1>{{title}}</h1>
+        <p id="welcome">Use this site to find out birthdays in Nisum!!</p>
     </div>
     <div class="main-content">
         <div id="bodycontent">
-            <p>Use this site to find out birthdays in Nisum!!</p>
             <div>
-                <a href="/searchinrange">Search in a Range</a>
-                <a class="buttonTM" href="/thismonth">This month</a>
-                <a href="/nextmonth">Next Month</a>
+                <a id="toggleformBtn" href="/">Search in a Range/ clear</a>
+                <a class="buttonTM toggleformBtn" href="">This month</a>
+                <a href="" class="buttonNM toggleformBtn">Next Month</a>
             </div>
-            {{!-- <label for="cars">Choose an option:</label>
-            <select name="opt" id="searchopt">
-                <option value="1">Search in a range</option>
-                <option value="2">Birthdays of the month</option>
-                <option value="3">Birthdays of the next month</option>
-            </select> --}}
-
+            <form id='formulario' action="" style="padding: 2px 2px; border-radius: 3px; border: none;">
+                <div>
+                    <label for="birthday">Start Date</label>
+                    <input type="date" id="Startdate" name="startDate" class="form-control"
+                    value="2022-01-01"
+                    min="2022-01-01" max="2022-12-31">
+                    <label for="birthday">End Date</label>
+                    <input type="date" id="Enddate" name="endDate" class="form-control"
+                    value="2022-12-31"
+                    min="2022-01-01" max="2022-12-31">
+                    <input class="button" type="submit" value="Search!!">
+                </div>
+            </form> 
+                <p id="message-1"> <br>   </p>
+            <div class="cajaresultados border border-muted" >  
+                <p ></p>
+                <table id="message-2">
+                    
+                </table>
+            </div>
         </div>
     </div>
-    {{!-- <div class="cajaresultados border border-muted" style="overflow-y: scroll; height: 25vh; border-radius: 3px; background-color: aqua;">  
-                <p id="message-1"></p>
-                <p id="message-2"></p>
-            </div> --}}
-    
     <div id="footer">
         <span>Created by FL</span>
     </div id="footer">
-
     <script src="js/app.js"></script>
 </body>
+<script>
+    $(document).ready(function(e){
+        
+        $( ".toggleformBtn" ).on('click', 
+            function() {
+            $( "#formulario" ).css("visibility", "hidden");
+            }
+        );
+        e.preventDefault()
+    });
+</script>
 </html>
