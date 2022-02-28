@@ -1,5 +1,5 @@
 function convertToDate(inputDateString) {
-  const arrayInputDateString = inputDateString.split('/');
+  const arrayInputDateString = inputDateString.split('-');
   const date = new Date();
   date.setFullYear(
     date.getFullYear(),
@@ -26,7 +26,7 @@ function dataToObject(data) {
   const dataFormated = data
     .split('\n')
     .splice(1)
-    .map(row => {
+    .map((row) => {
       if (row === '') {
         throw new Error('Existe una fila sin información. Favor eliminarla del archivo.');
       }
