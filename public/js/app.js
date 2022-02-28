@@ -16,7 +16,8 @@ $(".table-results").append('<tr>' +
   }
 }
 
-const currentMonthForm = document.querySelector('form');
+const currentMonthForm = document.querySelector('#form1');
+const nextMonthForm = document.querySelector('#form2');
 
 currentMonthForm.addEventListener('click', (e) => {
     e.preventDefault();
@@ -29,5 +30,17 @@ currentMonthForm.addEventListener('click', (e) => {
           }
       });
   });
+});
 
+nextMonthForm.addEventListener('click', (e) => {
+  e.preventDefault();
+  fetch('/birthday_next_month').then((response) => {
+    response.json().then((data) => {
+        if (data.error) {
+            alert(`${data.error}`);
+        } else {
+            loadData(data);
+        }
+    });
+});
 });
