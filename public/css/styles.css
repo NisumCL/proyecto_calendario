@@ -56,23 +56,29 @@ h1 {
     border: 1px solid #E5E3C9;
 }
 
-thead th:nth-child(1) {
-    width: 40%;
+.table {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-collapse:  collapse;
+    font-family: 'Quicksand', sans-serif;
+    overflow: hidden;
+    font-weight: bold;
 }
 
-thead th:nth-child(2) {
-    width: 20%;
+.table thead th {
+    background-color: #009578;
+    color: #ffffff;
 }
 
-thead th:nth-child(3) {
-    width: 15%;
+.table td,
+.table th {
+    text-align: center;
+    padding: 10px 20px;
 }
 
-thead th:nth-child(4) {
-    width: 25%;
+.table tbody tr:nth-of-type(even) {
+    background: #eeeeee;
 }
 
-th, td {
-    padding: 5px;
-    text-align: left;
-}
+.table tbody tr:last-of-type {
+    border-bottom:  2px solid #009578;
+} 
