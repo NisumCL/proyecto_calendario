@@ -1,12 +1,12 @@
 body {
     color: orange;
-    background-color: #59ca64;
+    background-color: #E5E3C9;
 }
 
 .main-content {
     font-family: Arial;
-    background-color: #357C3C;
-    color: #f0456a;
+    background-color: #94B49F;
+    color: #35858B;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     max-width: 750px;
     margin: 0 auto;
@@ -29,7 +29,7 @@ body {
 }
 
 .footer-content {
-    border-top: 1px solid #f0456a;
+    border-top: 1px solid #789395;
     margin-top: 16px;
     padding: 16px 0;
 }
@@ -43,17 +43,17 @@ h1 {
 }
 
 .header-content a {
-    color: #357C3C;
+    color: #E5E3C9;
     padding: 5px;
     margin-right: 16px;
     text-decoration: none;
-    background-color: #f0456a;
+    background-color: #35858B;
 }
 
 .header-content a:hover{
-    color: #f0456a;
-    background-color: #357C3C;
-    border: 3px solid #f0456a;
+    color: #35858B;
+    background-color: #94B49F;
+    border: 1px solid #E5E3C9;
 }
 
 thead th:nth-child(1) {

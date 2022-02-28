@@ -16,7 +16,7 @@ $(".table-results").append('<tr>' +
   }
 }
 
-const currentMonthForm = document.querySelector('form');
+const currentMonthForm = document.querySelector('.form1');
 
 currentMonthForm.addEventListener('click', (e) => {
     e.preventDefault();
