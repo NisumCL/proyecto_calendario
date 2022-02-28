@@ -1,10 +1,7 @@
 const express = require('express');
-const { dataFile } = require('./utils/reader');
-const { getBirthdaysFromStrings } = require('./utils/options');
-const { dataToObject } = require('./utils/converter');
+const { getBirthdaysFromStrings } = require('./utils/services');
 const { isValidDateFormat } = require('./utils/validator');
 
-const workersData = dataToObject(dataFile('./mails_y_cumples_03.csv'));
 const app = express();
 
 app.listen(3000, () => {
@@ -21,6 +18,6 @@ app.get('/birthday_between_dates', (req, res) => {
   if (!endDate || !isValidDateFormat(endDate)) {
     res.send({ error: 'Problems with endDate' });
   }
-  const birthdays = getBirthdaysFromStrings(startDate, endDate, workersData);
+  const birthdays = getBirthdaysFromStrings(startDate, endDate);
   res.send(birthdays);
 });
