@@ -16,31 +16,19 @@ $(".table-results").append('<tr>' +
   }
 }
 
-const currentMonthForm = document.querySelector('#form1');
-const nextMonthForm = document.querySelector('#form2');
+const currentMonthForm = document.querySelector('form');
 
 currentMonthForm.addEventListener('click', (e) => {
     e.preventDefault();
     fetch('/birthday_month_course').then((response) => {
       response.json().then((data) => {
           if (data.error) {
-              alert(`${data.error}`);
+              console.log(data.error);
           } else {
               loadData(data);
           }
       });
   });
+
 });
 
-nextMonthForm.addEventListener('click', (e) => {
-  e.preventDefault();
-  fetch('/birthday_next_month').then((response) => {
-    response.json().then((data) => {
-        if (data.error) {
-            alert(`${data.error}`);
-        } else {
-            loadData(data);
-        }
-    });
-});
-});
