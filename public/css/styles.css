@@ -8,7 +8,7 @@ body {
     background-color: #357C3C;
     color: #f0456a;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    max-width: 650px;
+    max-width: 750px;
     margin: 0 auto;
     padding: 0 16px;
     display: flex;
@@ -23,8 +23,9 @@ body {
 
 .table-content {
     background-color: whitesmoke;
+    height: 40vh;
     padding: 0 10px;
-    flex-grow: 1;
+    overflow-y: scroll; 
 }
 
 .footer-content {
@@ -53,4 +54,25 @@ h1 {
     color: #f0456a;
     background-color: #357C3C;
     border: 3px solid #f0456a;
+}
+
+thead th:nth-child(1) {
+    width: 40%;
+}
+
+thead th:nth-child(2) {
+    width: 20%;
+}
+
+thead th:nth-child(3) {
+    width: 15%;
+}
+
+thead th:nth-child(4) {
+    width: 25%;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
 }
