@@ -6,26 +6,38 @@ const app = express();
 const port = 3000;
 
 app.get('/birthday_month_course', (req, res) => {
-  const birthdays = actualMonthService();
-  res.send(birthdays);
+  try {
+    const birthdays = actualMonthService();
+    res.send(birthdays);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 });
 
 app.get('/birthday_next_month', (req, res) => {
-  const birthdays = nextMonthService();
-  res.send(birthdays);
+  try {
+    const birthdays = nextMonthService();
+    res.send(birthdays);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 });
 
 app.get('/birthday_between_dates', (req, res) => {
-  const { startDate, endDate } = req.query;
+  try {
+    const { startDate, endDate } = req.query;
 
-  if (!startDate || !isValidDateFormat(startDate)) {
-    res.send({ error: 'Problems with startDate' });
+    if (!startDate || !isValidDateFormat(startDate)) {
+      res.send({ error: 'Problems with startDate' });
+    }
+    if (!endDate || !isValidDateFormat(endDate)) {
+      res.send({ error: 'Problems with endDate' });
+    }
+    const birthdays = betweenTwoDatesService(startDate, endDate);
+    res.send(birthdays);
+  } catch (error) {
+    res.status(500).send(error.message);
   }
-  if (!endDate || !isValidDateFormat(endDate)) {
-    res.send({ error: 'Problems with endDate' });
-  }
-  const birthdays = betweenTwoDatesService(startDate, endDate);
-  res.send(birthdays);
 });
 
 app.listen(port, () => {
