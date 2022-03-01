@@ -1,4 +1,4 @@
-const { printMain } = require('./main')
+const { printMenu } = require('./main')
 const { show, convertToDate } = require('./converter');
 const { isValidDateFormat } = require('./validator');
 const { biggerDate, filteredBirthdays } = require('./comparator');
@@ -8,22 +8,22 @@ const readline = require('readline').createInterface({
     output: process.stdout
   })
   
-  function buscarEntreFechas (workersData) {
+  function searchBetweenDates (workersData) {
     readline.question('Ingrese fecha de inicio (yyyy/mm/dd): ', (startDate) => {
-      obtenerFechaFin(startDate, workersData)
+      getEndDate(startDate, workersData)
     })
   }
   
-  function obtenerFechaFin (startDate, workersData) {
+  function getEndDate (startDate, workersData) {
     readline.question('Ingrese fecha de fin (yyyy/mm/dd): ', (endDate) => {
-      obtenerCumples(startDate, endDate, workersData)
+      getBirthday(startDate, endDate, workersData)
       readline.question('\nPresione ENTER para continuar', (aux) => {
-        principalMain(workersData)
+        main(workersData)
       })
     })
   }
   
-  function obtenerCumples (startDate, endDate, workersData) {
+  function getBirthday (startDate, endDate, workersData) {
     let birthdayList = [];
     if (isValidDateFormat(startDate) && isValidDateFormat(endDate)) {
       const firstDate = convertToDate(startDate)
@@ -44,7 +44,7 @@ const readline = require('readline').createInterface({
     }
   }
   
-  function buscarMesActual (workersData) {
+  function findCurrentMonth (workersData) {
     let birthdayList = [];
     const today = new Date()
     const firstDate = new Date(2022, today.getMonth(), 1)
@@ -52,11 +52,11 @@ const readline = require('readline').createInterface({
     birthdayList = filteredBirthdays(firstDate, secondDate, workersData)
     show(birthdayList);
     readline.question('\nPresione ENTER para continuar', (aux) => {
-        principalMain(workersData)
+        main(workersData)
     })
   }
   
-  function buscarMesSiguiente (workersData) {
+  function findNextMonth (workersData) {
     let birthdayList = [];
     const today = new Date()
     const firstDate = new Date(2022, today.getMonth() + 1, 1)
@@ -64,23 +64,23 @@ const readline = require('readline').createInterface({
     birthdayList = filteredBirthdays(firstDate, secondDate, workersData);
     show(birthdayList);
     readline.question('\nPresione ENTER para continuar', (aux) => {
-        principalMain(workersData)
+        main(workersData)
     })
   }
   
-  function principalMain (workersData) {
-    printMain()
+  function main (workersData) {
+    printMenu()
     readline.question('Seleccione una opcion: ', (option) => {
       const opt = parseInt(option)
       switch (opt) {
         case 1:
-          buscarEntreFechas(workersData)
+          searchBetweenDates(workersData)
           return
         case 2:
-          buscarMesActual(workersData)
+          findCurrentMonth(workersData)
           return
         case 3:
-          buscarMesSiguiente(workersData)
+          findNextMonth(workersData)
           return
         case 0:
           console.log('\nGracias por usar el programa.\n')
@@ -89,7 +89,7 @@ const readline = require('readline').createInterface({
         default:
           console.log('seleccione opcion valida')
           readline.question('\nPresione ENTER para continuar', (aux) => {
-            principalMain(workersData)
+            main(workersData)
           })
           return
       }
@@ -97,5 +97,5 @@ const readline = require('readline').createInterface({
   }
 
   module.exports = {
-      principalMain
+      main
   }

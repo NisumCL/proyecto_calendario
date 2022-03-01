@@ -1,4 +1,4 @@
-function printMain () {
+function printMenu () {
     console.clear()
     console.log('-------- MENU --------')
     console.log('1. Obtain the birthdays between two dates.')
@@ -8,5 +8,5 @@ function printMain () {
   }
   
   module.exports = {
-    printMain
+    printMenu
   }
