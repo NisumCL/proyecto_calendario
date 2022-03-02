@@ -25,6 +25,7 @@ body {
     background-color: whitesmoke;
     height: 40vh;
     padding: 0 10px;
+    flex-grow: 1;
     overflow-y: scroll; 
 }
 
