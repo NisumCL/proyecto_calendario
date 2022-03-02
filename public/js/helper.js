@@ -1,5 +1,3 @@
-//import { loadIntoTable } from './helper';
-
 console.log('Client side javascript file is loaded!');
 
 async function loadIntoTable(url) {
@@ -15,11 +13,11 @@ async function loadIntoTable(url) {
     tr.appendChild(theader);
   });
 
-  birthdays.forEach(birthdayItem => {
+  birthdays.forEach(birthday => {
     trow = table.insertRow(-1);
     cols.forEach(colsItem => {
       const cell = trow.insertCell(-1);
-      cell.innerHTML = birthdayItem[colsItem];
+      cell.innerHTML = birthday[colsItem];
     });
   });
 
@@ -29,17 +27,8 @@ async function loadIntoTable(url) {
   el.appendChild(table);
 }
 
-// function betweenTwoDates() {}
-const birthForm = document.querySelector('#birthForm');
-let startDate;
-let endDate;
-let url;
+//function nextMonth() {}
+const urlNextMonth = 'http://localhost:3000/birthday_next_month';
+loadIntoTable(urlNextMonth);
 
-birthForm.addEventListener('submit', event => {
-  event.preventDefault();
-
-  startDate = event.target.elements.fechaInicio.value;
-  endDate = event.target.elements.fechaFin.value;
-  url = `http://localhost:3000/birthday_between_dates?startDate=${startDate}&endDate=${endDate}`;
-  loadIntoTable(url);
-});
+//module.exports = { loadIntoTable };

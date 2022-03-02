@@ -26,7 +26,7 @@ function dataToObject(data) {
   const dataFormated = data
     .split('\n')
     .splice(1)
-    .map((row) => {
+    .map(row => {
       if (row === '') {
         throw new Error('Existe una fila sin información. Favor eliminarla del archivo.');
       }
