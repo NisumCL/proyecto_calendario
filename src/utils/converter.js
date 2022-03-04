@@ -1,3 +1,5 @@
+const Worker = require('../models/worker')
+
 function convertToDate(inputDateString) {
   const arrayInputDateString = inputDateString.split('-');
   const date = new Date();
@@ -31,7 +33,8 @@ function dataToObject(data) {
         throw new Error('Existe una fila sin información. Favor eliminarla del archivo.');
       }
       const workerData = row.split(',');
-      const worker = {
+      let worker = new Worker();
+      worker = {
         name: workerData[1].replace('"', '').trim(),
         lastname: workerData[0].replace('"', ''),
         email: workerData[2],
