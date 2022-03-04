@@ -1,4 +1,4 @@
-console.log('Helper Client side javascript file is loaded!');
+console.log('elper Client side javascript file is loaded!');
 
 async function loadIntoTable(urlData) {
   const response = await fetch(urlData);
@@ -7,6 +7,7 @@ async function loadIntoTable(urlData) {
   const table = document.createElement('table');
   const tr = table.insertRow(-1);
 
+  console.log(cols);
   cols.forEach(colsItem => {
     const theader = document.createElement('th');
     theader.innerHTML = colsItem;

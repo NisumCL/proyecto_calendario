@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
 console.log('Script Client side javascript file is loaded!');
 
 function betweenTwoDates() {

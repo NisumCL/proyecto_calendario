@@ -1,58 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Monda&display=swap');
+
 body {
-  background-color: #cfd6e4;
-  color: rgb(12, 9, 9);
-  font-family: 'Oswald', sans-serif;
+  background-color: rgb(8, 124, 201);
+  font-family: 'Monda', sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-header {
-  text-align: center;
-  margin-top: 5px;
+
+header,
+header-content {
+  margin: 0;
+  padding: 5px 10px;
+  background-color: rgb(6, 108, 175);
+  width: 100%;
 }
+
+.main-content {
+  flex-grow: 1;
+  padding-top: 3%;
+}
+
 h1 {
-  font-size: 36px;
-  padding: 15px;
-  color: #8c6b48;
-  background-color: white;
+  color: rgb(4, 252, 252);
+  font-size: 45px;
+  margin-bottom: 0px;
 }
-h2 {
-  font-size: 24px;
-  padding: 15px;
-  text-transform: uppercase;
+
+span,
+#message-1,
+#welcome {
+  color: cyan;
+  margin: 2% 1% 1% 1%;
 }
-h3 {
-  font-size: 20px;
-  padding: 15px;
-  text-transform: uppercase;
-  text-align: left;
-  margin-left: 20px;
-  font-weight: 500;
-  line-height: 2.7;
-  letter-spacing: 0.8px;
+
+label {
+  color: cyan;
+  font-size: smaller;
+  margin: 2% 1% 1% 1%;
 }
-th {
-  border: 2px solid #8c6b48;
+
+#bodycontent {
+  padding: 0% 2%;
 }
-table {
-  text-align: center;
-  margin: 20px auto;
+
+img {
+  height: 43vh;
+  margin: 0px;
+  padding: 0px;
 }
-td {
-  border: 2px solid #8c6b48;
-  width: 300px;
+
+button,
+.button {
+  text-decoration: none;
+  color: rgb(54, 5, 168);
+  background-color: aqua;
+  padding: 4px;
+  margin: 1%;
+  border-radius: 3px;
+  border: none;
 }
+
+.button {
+  cursor: grab;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(54, 5, 168);
+  background-color: aqua;
+  padding: 4px 3px;
+  margin: 5% 2% 7% 0%;
+  border-radius: 3px;
+  border: none;
+  line-height: 2em;
+}
+
+a:hover {
+  background-color: rgb(32, 3, 112);
+  color: cyan;
+}
+
+.button:hover {
+  background-color: rgb(32, 3, 112);
+  color: cyan;
+}
+
 footer {
-  margin-top: 50px;
+  border-top: 1px dotted rgb(2, 70, 172);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgb(92, 179, 238);
+  color: rgb(4, 252, 252);
   text-align: center;
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
   bottom: 5px;
-  background-color: #242f44;
-  z-index: 5;
 }
-footer h3 {
-  display: inline-block;
-  font-size: 14px;
-  background-color: #242f44;
+
+.footer p {
+  color: rgb(4, 252, 252);
 }
+
+.cajaresultados {
+  margin-top: 0%;
+  padding: 1%;
+  overflow-y: scroll;
+  height: 39vh;
+  border-radius: 3px;
+  background-color: rgb(229, 247, 241);
+  margin-bottom: 1%;
+}
+
+#formulario {
+  margin-top: 10px;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid rgb(92, 179, 238);
+}
+
+th {
+  color: rgb(7, 7, 172);
+  background-color: rgb(4, 252, 252);
+  border: 2px solid rgb(92, 179, 238);
+}
+
+td {
+  border: 2px solid rgb(92, 179, 238);
+  width: 300px;
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 35%;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: left;
+}
+
 .container {
   max-width: 940px;
   margin: 0 auto;

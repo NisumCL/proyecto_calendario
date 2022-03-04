@@ -6,18 +6,19 @@
     </head>
 
     <body>
-        <header>
-            <h1>Menú pendiente unir</h1>
-        </header>
-        
-        <div>
-            <h1>Lista de cumpleaños del próximo mes.</h1>
+        <div class="main content">
+            <div class="header-content">
+                {{>header}}
+            </div>
+            
+            <div class="">
+                <h1>Next Month´s Birthdays</h1>
+            </div>
+
+                <table id="table"></table>
+
+            {{>footer}}
         </div>
-
-            <table id="table"></table>
-
-        {{>footer}}
-    
     <script src="/js/helper.js"></script>
     <script src="/js/next-month.js"></script>
 
