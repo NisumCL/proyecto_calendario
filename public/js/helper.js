@@ -1,7 +1,7 @@
-console.log('Client side javascript file is loaded!');
+console.log('Helper Client side javascript file is loaded!');
 
-async function loadIntoTable(url) {
-  const response = await fetch(url);
+async function loadIntoTable(urlData) {
+  const response = await fetch(urlData);
   const birthdays = await response.json();
   const cols = ['name', 'lastname', 'birthday'];
   const table = document.createElement('table');
@@ -26,9 +26,3 @@ async function loadIntoTable(url) {
   el.innerHTML = '';
   el.appendChild(table);
 }
-
-//function nextMonth() {}
-const urlNextMonth = 'http://localhost:3000/birthday_next_month';
-loadIntoTable(urlNextMonth);
-
-//module.exports = { loadIntoTable };
