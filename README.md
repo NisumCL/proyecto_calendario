@@ -12,11 +12,11 @@ Consta de 3 opciones:
 3. Mostrar los cumpleaños del próximo mes
 
 ##### Indicaciones
-En la opcion de mostrar cumpleaños entre dos fechas personalizadas:
-- Se deben entregar dos fechas
-- Si no se entregan fechas,  o bien, alguna de las fechas está erronea o ausente, se acusa el error y no se muestran cumpleaños.
+En la opción de mostrar cumpleaños entre dos fechas personalizadas:
+- Se debe entregar dos fechas
+- Si no se entrega ninguna fecha, o bien, alguna de las fechas está erronea o ausente, se acusa el error y no se muestran cumpleaños.
 - Si se entregan dos fechas iguales, sólo se muestran los cumpleaños que caigan en ese único día.
-- Si se entrega una primera fecha mayor a la segunda, se muestra correctamente dicho intervalo, como si la segunda fecha correspondiera al año siguiente de la primera. Siempre busca intervalos hacia el futuro.
+- Si se entrega una primera fecha mayor a la segunda, se muestra correctamente dicho intervalo, como si la segunda fecha correspondiera al año siguiente de la primera. Siempre se busca en intervalos hacia el futuro.
 
 ##### Observaciones
 - Esta aplicación no tiene por objetivo actualizar la nómina de cumpleaños de empleados de NISUM, sino sólo mostrar cumpleaños ya registrados.
@@ -37,12 +37,10 @@ git clone https://github.com/NisumCL/proyecto_calendario.git
 cd proyecto_calendario
 npm i
 ```
-
 4. A continuación, en el mismo terminal, ejecutar:
 ```sh
 npm run start 
 ```
-
 5. En el navegador, la aplicacion utiliza el puerto 3000, de manera que se visualiza en __http://localhost:3000/__
 
 
