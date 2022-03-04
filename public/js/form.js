@@ -15,3 +15,5 @@ function betweenTwoDates() {
     loadIntoTable(url);
   });
 }
+
+betweenTwoDates();
