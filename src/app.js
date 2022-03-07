@@ -8,7 +8,7 @@ const { isValidDateFormat } = require('./utils/validator');
 const app = express()
 
 const publicDirectoryPath = path.join(__dirname, '../public')
-const viewsPath = path.join(__dirname, '../templates')
+const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
 app.set('view engine', 'hbs')
