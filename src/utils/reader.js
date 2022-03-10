@@ -1,6 +1,7 @@
 /* eslint-disable */
 const fs = require('fs');
 
+//aqui es donde se debe leer la base de datos
 function dataFile(fileName) {
   // eslint-disable-next-line consistent-return
   const data = fs.readFileSync(fileName, 'utf-8', (err, file) => {

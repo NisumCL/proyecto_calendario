@@ -9,22 +9,24 @@
     <title>Index</title>
 </head>
 <body>
+    <div class="header-content">
+        <h1>{{title}}</h1>
+        <p id="welcome">Use this site to find out birthdays in Nisum!!</p>
+    </div>
     <div class="main-content">
-        <div class="header-content">
-           {{>header}}
-        </div>
 
-         <div class="text-content">
-            <h1>Hola....</h1>
-        </div>
-           <div class="table-content">
+        <div class="text-content" style="align-items:center;">
+            
+            <div class="row" style="margin: 7% 2%;"><a href="/current-month">Current Month</a></div>
+            <div class="row" style="margin: 7% 2%;"><a href="/nextMonth">Next Month</a></div>
+            <div class="row" style="margin: 7% 2%;"><a href="/between-dates">Between Dates</a></div>
             
         </div>
-
-        <div class="footer-content">
-            {{>footer}}
-        </div>
+            
         
+    </div>
+    <div class="footer-content">
+        {{>footer}}
     </div>
 </body>
 </html>

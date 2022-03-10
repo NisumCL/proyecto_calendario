@@ -4,6 +4,8 @@ const hbs = require('hbs');
 const express = require('express');
 const { actualMonthService, nextMonthService, betweenTwoDatesService } = require('./utils/service');
 const { isValidDateFormat } = require('./utils/validator');
+require('./db/mongoose')
+// const Worker = require('../models/worker')
 
 const app = express()
 
@@ -18,29 +20,27 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))
 
 
-
-//------------------------------------------------------------------------
-
+// ruta front
 app.get('', (req, res) => {
   res.render('index', {
     title: 'Birthday app',
   });
 });
 
-app.get('/currentMonth', (req, res) => {
-  res.render('currentMonth', {
+app.get('/current-month', (req, res) => {
+  res.render('current-month', {
     title: 'Current Month',
   });
 });
 
-app.get('/nextMonth', (req, res) => {
-  res.render('nextMonth', {
+app.get('/next-month', (req, res) => {
+  res.render('next-month', {
     title: 'Next Month',
   });
 });
 
-app.get('/betweenDates', (req, res) => {
-  res.render('betweenDates', {
+app.get('/between-dates', (req, res) => {
+  res.render('between-dates', {
     title: 'Between Dates',
   });
 });

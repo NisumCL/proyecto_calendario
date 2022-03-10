@@ -10,29 +10,24 @@
     <title>Current Month</title>
 </head>
 <body>
+    <div class="header-content">
+        {{>header}}
+    </div>
     <div class="main-content">
-        <div class="header-content">
-            {{>header}}
+        <div class="">
+            <h2>Current Month´s Birthdays</h2>
         </div>
-
-        <div class="text-content">
-            <form class="">
-                <label for="">Press this button to search the current month birthdays</label>
-                <button>Search</button>
-            </form>
-        </div>
-
         <div class="table-content">
-            <table class="table">
-                <thead></thead>
+            <table id="table" class="table">
+                <thead class="td"></thead>
                 <tbody></tbody>
             </table>
         </div>
 
-        <div class="footer-content">
-            {{>footer}}
-        </div>
         
+    </div>
+    <div class="footer-content">
+        {{>footer}}
     </div>
     <script src="/js/app.js"></script>
 </body>
