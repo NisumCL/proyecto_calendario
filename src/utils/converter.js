@@ -1,5 +1,6 @@
 /* eslint-disable */
-const Worker = require('../models/worker')
+
+// const Worker = require('../src/models/worker')
 
 function show(data) {
   data.forEach(person => {
@@ -33,26 +34,22 @@ function matchThisYear(dateString) {
 }
 
 //aca ya no necesitamos separar el csv, sino que consultar la base de datos.
-// db.collection('new-tasks').find({ aqui adentro le tengo que decir que los cumpleanios cumplan con los criterios que pedia el backend }).count((error, users)=>{
-        
-//   console.log(users)
-// })
-
 function dataToObject(data) {
   const dataFormated = data
-    .split('\n')
-    .splice(1)
+    // .split('\n')
+    // .splice(1)
     .map(row => {
       if (row === '') {
         throw new Error('Existe una fila sin información. Favor eliminarla del archivo.');
       }
-      const workerData = row.split(',');
+      // const workerData = row.split(',');
       const worker = {
-        name: Worker.name
-        lastname: Worker.lastname.replace('"', ''),
-        email: Worker.email,
-        birthday: matchThisYear(Worker.cumpleanios),
-        company: workerData[4],
+
+        // name: workerData[1].replace('"', '').trim(),
+        // lastname: workerData[0].replace('"', ''),
+        // email: workerData[2],
+        // birthday: matchThisYear(workerData[3]),
+        // company: workerData[4],
       };
       return worker;
     });
@@ -61,4 +58,4 @@ function dataToObject(data) {
 
 //
 
-module.exports = { dataToObject, convertToDate, show };
+module.exports = { dataToObject, convertToDate, show, matchThisYear };
