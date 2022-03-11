@@ -2,17 +2,31 @@
 const { filteredBirthdays, biggerDate } = require('./comparator');
 const { dataFile } = require('./reader');
 const { dataToObject, convertToDate } = require('./converter');
+const mongoose = require('mongoose')
+const Worker = require('../models/worker')
 
-
-function readData() {
-  const fileInfo = dataFile('./mails_y_cumples_03.csv');
-  const workersData = dataToObject(fileInfo);
-  return workersData;
+async function readData() {
+	mongoose.connect('mongodb://127.0.0.1:27017/nisum-workers', {
+		useNewUrlParser: true,
+		// useCreateIndex: true,
+		// useFindAndModify: false
+	})
+	return await Worker.find({})
 }
 
 function actualMonthService() {
-  const workersData = readData();
-  const currentMonth = new Date();
+	let workersData;
+	readData().then((res) => {
+		const currentMonth = new Date();
+		const nextMonth = currentMonth.getMonth() + 1;
+		const initMonth = new Date();
+		initMonth.setDate(1);
+		const endMonth = new Date();
+		endMonth.setMonth(nextMonth, 0);
+		const birthdays = filteredBirthdays(initMonth, endMonth, res);
+		return birthdays;
+	} );
+  /*const currentMonth = new Date();
   const nextMonth = currentMonth.getMonth() + 1;
   const initMonth = new Date();
   initMonth.setDate(1);
@@ -20,6 +34,7 @@ function actualMonthService() {
   endMonth.setMonth(nextMonth, 0);
   const birthdays = filteredBirthdays(initMonth, endMonth, workersData);
   return birthdays;
+   */
 }
 
 function nextMonthService() {
@@ -36,8 +51,12 @@ function nextMonthService() {
 }
 
 function betweenTwoDatesService(startDate, endDate) {
-  const workersData = readData();
-  let birthdayList = [];
+	let workersData;
+	readData().then((res) => {
+		workersData = res;
+	} );
+  
+	let birthdayList = [];
   const firstDate = convertToDate(startDate);
   const secondDate = convertToDate(endDate);
   if (biggerDate(firstDate, secondDate)) {

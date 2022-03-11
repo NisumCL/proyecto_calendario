@@ -92,7 +92,7 @@ app.get('*', (req, res) => {
 });
 
 
-const port = 3000
+const port = 8888
 app.listen(port, () =>{
     console.log('server is up and port ' + port)
 })
