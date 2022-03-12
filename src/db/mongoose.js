@@ -23,20 +23,35 @@ mongoose.connect('mongodb://127.0.0.1:27017/nisum-workers', {
 app.get('/workers', async(req, res) => {
     
     try {
-        const workerData = await Worker.find({}) 
-        // console.log(typeof workerData)
+        const workerData = await Worker.find({})
+        // const workerDataParsed = workerData.Worker
+        console.log(typeof Worker)
+        console.log(Worker)
+        // const workerData = await Worker.updateMany({ }, { birthday: matchThisYear(birthday) })
+        // let juego = JSON.parse(...workerData)
+        // const { nosequetraeraesto } = req.body.json()
+        console.log(typeof workerData)
+        console.log(workerData[56].cumpleanios)
+        const cumple = workerData[56].cumpleanios
+        console.log(typeof cumple)
+        // const newworkerData = workerData[56].split(',');
+        // console.log(newworkerData)
+        // const parsedItem = JSON.parse(workerData[56])
+        // console.log(parsedItem.cumpleanios)
+        // console.log(workerData)
+        // console.log(nosequetraeraesto )
         // const workerDataArray = []
         // let worker = {}
-        workerData.forEach(element => {
-          console.log(element['apellido_y_nombre'])
-        //   worker = {
-        //     name: workerData[element].name,
-        //     email: workerData[element].email,
-        //     birthday: matchThisYear(workerData[element].birthday),
-        //     company: workerData[element].company
-        //   }
-        //   workerDataArray.push(worker)
-        })
+        // workerData.forEach(element => {
+        //   // console.log(typeof element)
+        // //   worker = {
+        // //     name: workerData[element].name,
+        // //     email: workerData[element].email,
+        // //     birthday: matchThisYear(workerData[element].birthday),
+        // //     company: workerData[element].company
+        // //   }
+        // //   workerDataArray.push(worker)
+        // })
 
         // console.log(workerDataArray)
             res.send(workerData)

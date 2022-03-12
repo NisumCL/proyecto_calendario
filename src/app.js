@@ -3,9 +3,20 @@ const path = require('path');
 const hbs = require('hbs');
 const express = require('express');
 const { actualMonthService, nextMonthService, betweenTwoDatesService } = require('./utils/service');
+const { matchThisYear } = require('../utils/converter')
 const { isValidDateFormat } = require('./utils/validator');
-require('./db/mongoose')
-// const Worker = require('../models/worker')
+const Worker = require('../models/worker')
+
+const app = express()
+
+
+mongoose.connect('mongodb://127.0.0.1:27017/nisum-workers', {
+    useNewUrlParser: true,
+    // useCreateIndex: true,
+    // useFindAndModify: false
+  })
+  
+  console.log('connected')
 
 const app = express()
 

@@ -2,10 +2,10 @@
 const mongoose = require('mongoose')
 
 const Worker = mongoose.model('Worker', { 
-    name: {
+    apellido_y_nombre: {
         type: String
     },
-    email: {
+    email_nisum: {
         type: String,
         validate(value){
             if(!validator.isEmail(value) === true){
@@ -13,14 +13,13 @@ const Worker = mongoose.model('Worker', {
             }
         }
     },
-    birthday: {
-        type: Date
+    cumpleanios: {
+        type: String
     },
-    company: {
+    empresa: {
         type: String
     },
 })
-
 
 
 module.exports = Worker

@@ -21,16 +21,16 @@ MongoClient.connect( connectionURL, {useNewUrlParser: true}, (error, client)=>{
     
     const db = client.db(databaseName)
     
-    db.collection('workers').find({ }).toArray((error, workers)=>{
-        if(error){
-            return console.log('Unable to fetch')
-        }
-        // console.log(workers)
+    // db.collection('workers').find({ }).toArray((error, workers)=>{
+    //     if(error){
+    //         return console.log('Unable to fetch')
+    //     }
+    //     // console.log(workers)
 
-        workers.forEach(element => console.log(element))
-        console.log(workers[166])
-        return workers
-    })
+    //     workers.forEach(element => console.log(element))
+    //     console.log(workers[166])
+    //     return workers
+    // })
     
 })
 
