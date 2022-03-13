@@ -9,6 +9,7 @@ const Worker = require('../models/worker')
 
 const app = express()
 
+createDataBase()
 
 mongoose.connect('mongodb://127.0.0.1:27017/nisum-workers', {
     useNewUrlParser: true,
