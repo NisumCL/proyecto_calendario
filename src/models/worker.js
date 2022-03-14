@@ -2,21 +2,19 @@
 const mongoose = require('mongoose')
 
 const Worker = mongoose.model('Worker', { 
-    apellido_y_nombre: {
+    name: {
         type: String
     },
-    email_nisum: {
-        type: String,
-        validate(value){
-            if(!validator.isEmail(value) === true){
-                throw new Error('It is not an email')
-            }
-        }
-    },
-    cumpleanios: {
+    lastname: {
         type: String
     },
-    empresa: {
+    email: {
+        type: String
+    },
+    birthday: {
+        type: Date
+    },
+    company: {
         type: String
     },
 })
