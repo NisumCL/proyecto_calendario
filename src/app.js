@@ -9,7 +9,6 @@ const app = express()
 
 createDataBase()
 
-
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
@@ -20,9 +19,6 @@ hbs.registerPartials(partialsPath)
 
 app.use(express.static(publicDirectoryPath))
 app.use(router)
-
-
-
 
 const port = 3000
 app.listen(port, () =>{
