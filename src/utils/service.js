@@ -1,37 +1,27 @@
 /* eslint-disable */
-const { filteredBirthdays, biggerDate } = require('./comparator');
-const { dataFile } = require('./reader');
+const { biggerDate }  = require('./comparator');
+const { getGoogleSpreadSheet } = require('./reader');
 const { dataToObject, convertToDate } = require('./converter');
 const mongoose = require('mongoose')
 const Worker = require('../models/worker')
 
-
-//funciona con una sola conexion a todo.
 mongoose.connect('mongodb://127.0.0.1:27017/nisum-workers', {
   // useNewUrlParser: true,
   // useCreateIndex: true,
   // useFindAndModify: false
 })
 
-
-//Esta readdata se importa en mongo.js y crea una base de datos poblada con la info del csv, al ejecutar app.js
-function readData() {
-  const fileInfo = dataFile('./mails_y_cumples_03.csv');
-  const workersData = dataToObject(fileInfo);
-  return workersData;
-}
-
-//esta funcion cumple la misma funcion que en anteriores versiones cumplia readData, solo que ahora se trae la base de datos
-async function readDataBase() {
+async function readDataForDB() {
+  let googleDocId = '1X5mSu78hNXki5sKj_vD7hZIDpWwRJAzGf33otJG2MY0'; //esto es el id de mi spreadsheet en google drive"
   try{
-    const workersData = await Worker.find({})
-    return workersData
+    const fileInfo = await getGoogleSpreadSheet(googleDocId);
+    const workersData = dataToObject(fileInfo);
+    return workersData;
   }catch(e){
-    console.log('Unable to connect')
+    console.log('Something went wrong!!! check your credentials')
   }
 }
 
-//aqui y en la proxima funcion podriamos haber usado la funcion filteredBirthdays, pero mejor pasamos todo a consulta
 async function actualMonthService() {
   const currentMonth = new Date();
   const nextMonth = currentMonth.getMonth() + 1;
@@ -39,9 +29,12 @@ async function actualMonthService() {
   initMonth.setDate(1);
   const endMonth = new Date();
   endMonth.setMonth(nextMonth, 0);
-  // poner try y catch a todos los await de base de datos
-  const birthdays = await Worker.where({ birthday: { $gte: initMonth, $lte: endMonth }})
-  return birthdays;
+  try{
+    const birthdays = await Worker.where({ birthday: { $gte: initMonth, $lte: endMonth }})
+    return birthdays;
+  }catch(e){
+    console.log('Unable to connect')
+  }
 }
 
 async function nextMonthService() {
@@ -52,33 +45,36 @@ async function nextMonthService() {
   initMonth.setMonth(nextMonth, 1);
   const endMonth = new Date();
   endMonth.setMonth(monthAgead, 0);
-  const birthdays = await Worker.where({ birthday: { $gte: initMonth, $lte: endMonth }})
-  return birthdays;
+  try{
+    const birthdays = await Worker.where({ birthday: { $gte: initMonth, $lte: endMonth }})
+    return birthdays;
+  }catch(e){
+    console.log('Unable to connect')
+  }
 }
 
-
 async function betweenTwoDatesService(startDate, endDate) {
-  const workersData = await readDataBase();
   let birthdayList = [];
   const firstDate = convertToDate(startDate);
   const secondDate = convertToDate(endDate);
-  //bigger se queda, porque simplemente compara cosas que no vienen de la base de datos
-  if (biggerDate(firstDate, secondDate)) {
-    birthdayList = await Worker.where({ birthday: { $gte: firstDate, $lte: secondDate }})
-    // birthdayList = filteredBirthdays(firstDate, secondDate, workersData);
-  } else {
-    const startYear = new Date();
-    startYear.setMonth(0, 1);
-    const endYear = new Date();
-    endYear.setMonth(11, 31);
-    //aqui tambien podemos cambiar filteredBirthdays por consultas la filteredBirthdays
-    birthdayList = [
-      ...await Worker.where({ birthday: { $gte: firstDate, $lte: endYear }}), //filteredBirthdays(firstDate, endYear, workersData),
-      ...await Worker.where({ birthday: { $gte: startYear, $lte: secondDate }}) //filteredBirthdays(startYear, secondDate, workersData),
-    ];
+  const startYear = new Date();
+  startYear.setMonth(0, 1);
+  const endYear = new Date();
+  endYear.setMonth(11, 31);
+  try{
+    if (biggerDate(firstDate, secondDate)) {
+      birthdayList = await Worker.where({ birthday: { $gte: firstDate, $lte: secondDate }})
+    } else {
+      birthdayList = [
+        await Worker.where({ birthday: { $gte: firstDate, $lte: endYear }}), 
+        await Worker.where({ birthday: { $gte: startYear, $lte: secondDate }}) 
+      ];
+    }
+    return birthdayList;
+  }catch(e){
+    console.log('Unable to connect')
   }
-  return birthdayList;
 }
 
 
-module.exports = { readDataBase, readData, actualMonthService, nextMonthService, betweenTwoDatesService };
+module.exports = { readDataForDB, actualMonthService, nextMonthService, betweenTwoDatesService };

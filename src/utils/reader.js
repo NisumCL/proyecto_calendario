@@ -1,23 +1,16 @@
 /* eslint-disable */
-const fs = require('fs');
-const readline = require('readline');
+const { GoogleSpreadsheet} = require('google-spreadsheet');
+const credentials = require('../json/credentials.json');
 
+async function getGoogleSpreadSheet (id) {
+  const document = new GoogleSpreadsheet(id);
+  await document.useServiceAccountAuth(credentials);
+  await document.loadInfo();
 
-
-//aqui es donde se debe leer la base de datos, vamos a desactivarla
-function dataFile(filename) {
-  
-  const data = fs.readFileSync(filename, 'utf-8', (err, file) => {
-    if (err) {
-      throw new Error(err);
-    } else {
-      return file;
-    }
-  });
-  
-  return data;
-  // eslint-disable-next-line consistent-return
+  const sheet = document.sheetsByIndex[0];
+  const sheetRows =  await sheet.getRows();
+  return sheetRows;
 }
 
 
-module.exports = { dataFile };
+module.exports = { getGoogleSpreadSheet };

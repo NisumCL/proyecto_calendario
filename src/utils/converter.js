@@ -1,14 +1,4 @@
 /* eslint-disable */
-
-// const Worker = require('../src/models/worker')
-
-function show(data) {
-  data.forEach(person => {
-    // eslint-disable-next-line no-console
-    console.log(`${person.birthday} => ${person.name} ${person.lastname}`);
-  });
-}
-
 function convertToDate(inputDateString) {
   const arrayInputDateString = inputDateString.split('-');
   const date = new Date();
@@ -33,28 +23,20 @@ function matchThisYear(dateString) {
   return date;
 }
 
-//aca ya no necesitamos separar el csv, sino que consultar la base de datos.
 function dataToObject(data) {
-  const dataFormated = data
-    .split('\n')
-    .splice(1)
-    .map(row => {
-      if (row === '') {
-        throw new Error('Existe una fila sin información. Favor eliminarla del archivo.');
-      }
-      const workerData = row.split(',');
-      const worker = {
-        name: workerData[1].replace('"', '').trim(),
-        lastname: workerData[0].replace('"', ''),
-        email: workerData[2],
-        birthday: matchThisYear(workerData[3]),
-        company: workerData[4],
-      };
-      return worker;
-    });
+  const dataFormated = []
+  data.forEach((e) => {
+    let wholename = e._rawData[0].split(', ');
+    let  worker = {
+      name: wholename[1],
+      lastname: wholename[0],
+      email:  e._rawData[1],
+      birthday: matchThisYear(e._rawData[2]),
+      company: e._rawData[3]
+    };
+    dataFormated.push(worker);
+  })
   return dataFormated;
 }
 
-//
-
-module.exports = { dataToObject, convertToDate, show, matchThisYear };
+module.exports = { dataToObject, convertToDate, matchThisYear };
