@@ -40,7 +40,6 @@ router.get('/birthday_month_course', async (req, res) => {
     }
 });
 
-
 router.get('/birthday_next_month', async (req, res) => {
     try {
         const birthdays = await nextMonthService();
@@ -66,7 +65,6 @@ router.get('/birthday_between_dates', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
-
 
 router.get('*', (req, res) => {
     res.render('404', {
