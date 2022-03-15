@@ -1,10 +1,3 @@
-function show(data) {
-  data.forEach(person => {
-    // eslint-disable-next-line no-console
-    console.log(`${person.birthday} => ${person.name} ${person.lastname}`);
-  });
-}
-
 function convertToDate(inputDateString) {
   const arrayInputDateString = inputDateString.split('/');
   const date = new Date();
@@ -50,4 +43,4 @@ function dataToObject(data) {
   return dataFormated;
 }
 
-module.exports = { dataToObject, show, convertToDate };
+module.exports = { dataToObject, convertToDate };
