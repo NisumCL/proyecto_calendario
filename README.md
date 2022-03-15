@@ -1,8 +1,8 @@
 # **Proyecto calendario 🗓️**
 
-- ###### Esta aplicación muestra los cumpleaños de los funcionarios de NISUM dentro de intervalos fijados por el usuario, en un lapso máximo de 365 días.
+###### Esta aplicación muestra los cumpleaños de los funcionarios de NISUM dentro de intervalos fijados por el usuario, en un lapso máximo de 365 días.
 
-- ###### Fue desarrollada por las integrantes del Programa Trainee NISUM Chile del 2022.
+###### Fue desarrollada por las integrantes del Programa Trainee NISUM Chile del 2022.
 
 ##### Funcionalidades
 
@@ -71,10 +71,10 @@ npm run start
 
 - [Como generar una API para rescatar registros desde Googlespreadsheets](https://www.youtube.com/watch?v=crIC5JbS5tc)
 - [Como hacer a Mongodb y Mongoimport ejecutables desde terminal y así poder crear bases de datos en lineas de comando](https://www.youtube.com/watch?v=nuQD3Xfr0KY).
-- la línea de comandos que empleamos para crear una base de datos a partir de csv desde el terminal fue:
-- 'mongoimport -d nisum-workers -c workers --type CSV --file mails_y_cumples_03.csv --headerline'
+la línea de comandos que empleamos para crear una base de datos a partir de csv desde el terminal fue:
+'mongoimport -d nisum-workers -c workers --type CSV --file mails_y_cumples_03.csv --headerline'
 - [Robo3t](https://robomongo.org/)
-- [Postman] (https://www.postman.com/)
+- [Postman](https://www.postman.com/)
 
 
 ##### Colaboraciones y Sugerencias:
