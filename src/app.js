@@ -2,8 +2,9 @@
 const path = require('path');
 const hbs = require('hbs');
 const express = require('express');
-const { createDataBase } = require('./db/mongo.js')
-const router  = require('./routers/router.js')
+const { createDataBase } = require('./db/mongo')
+const router  = require('./routers/router')
+
 const app = express()
 
 createDataBase()
@@ -16,9 +17,8 @@ app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
-app.use(router)
 app.use(express.static(publicDirectoryPath))
-
+app.use(router)
 
 const port = 3000
 app.listen(port, () =>{

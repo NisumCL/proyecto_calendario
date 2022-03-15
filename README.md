@@ -26,7 +26,7 @@ En la opción de mostrar cumpleaños entre dos fechas personalizadas:
 - Esta aplicación no tiene por objetivo actualizar la nómina de cumpleaños de empleados de NISUM, sino sólo mostrar cumpleaños ya registrados.
 - Esta aplicación arroja los cumpleaños para el año en curso y a lo sumo, parte del año próximo.
 - Esta aplicación consulta una base de datos construida a partir de una Googlespreadsheet que contiene la nómina de personas cuyas fechas de cumpleaños se requiere buscar.
-- La base de datos es creada la primera vez que se ejecuta la aplicación.
+- La base de datos es creada la primera vez que se ejecuta la aplicación. De momento se vuelve a crear (se agregarn documentos, cada vez que se ejecuta.
 
 ##### Instrucciones
 
@@ -38,24 +38,23 @@ Para poder hacer uso de esta aplicación se debe:
 ```sh
 git clone https://github.com/NisumCL/proyecto_calendario.git
 ```
-3. Instalar [MongoImport] (https://docs.mongodb.com/database-tools/installation). 
 
-4. En el terminal preferido, posicionarse en la carpeta del repositorio y ejecutar:
+3. En el terminal preferido, posicionarse en la carpeta del repositorio y ejecutar:
 
 ```sh
 cd proyecto_calendario
 npm i
 ```
 
-5. A continuación, en el mismo terminal, ejecutar:
+4. A continuación, en el mismo terminal, ejecutar:
 
 ```sh
 npm run start
 ```
 
-6. En el navegador, la aplicacion utiliza el puerto 3000, de manera que se visualiza en **http://localhost:3000/**
+5. En el navegador, la aplicacion utiliza el puerto 3000, de manera que se visualiza en **http://localhost:3000/**
 
-7. Es muy recomendable, aunque opcional, tener instalados Mongo, Mongoimport y Robo3t para poder visualizar la base de datos una vez creada. 
+6. Es muy recomendable, aunque opcional, tener instalados Mongo, Mongoimport y Robo3t para poder visualizar la base de datos una vez creada. 
 
 ##### Tecnologías empleadas en la aplicación:
 
@@ -76,7 +75,7 @@ npm run start
 - 'mongoimport -d nisum-workers -c workers --type CSV --file mails_y_cumples_03.csv --headerline'
 - [Robo3t](https://robomongo.org/)
 - [Postman] (https://www.postman.com/)
-- 
+
 
 ##### Colaboraciones y Sugerencias:
 
