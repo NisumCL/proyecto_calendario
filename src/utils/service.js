@@ -2,14 +2,10 @@ const { filteredBirthdays, biggerDate } = require('./comparator');
 const { dataFile } = require('./reader');
 const { dataToObject, convertToDate } = require('./converter');
 
-function readData() {
-  const fileInfo = dataFile('./mails_y_cumples_03.csv');
-  const workersData = dataToObject(fileInfo);
-  return workersData;
-}
+const fileInfo = dataFile('./mails_y_cumples_03.csv');
+const workersData = dataToObject(fileInfo);
 
 function actualMonthService() {
-  const workersData = readData();
   const currentMonth = new Date();
   const nextMonth = currentMonth.getMonth() + 1;
   const initMonth = new Date();
@@ -21,7 +17,6 @@ function actualMonthService() {
 }
 
 function nextMonthService() {
-  const workersData = readData();
   const currentMonth = new Date();
   const nextMonth = currentMonth.getMonth() + 1;
   const monthAgead = nextMonth + 1;
@@ -34,7 +29,6 @@ function nextMonthService() {
 }
 
 function betweenTwoDatesService(startDate, endDate) {
-  const workersData = readData();
   let birthdayList = [];
   const firstDate = convertToDate(startDate);
   const secondDate = convertToDate(endDate);

@@ -1,5 +1,5 @@
 function convertToDate(inputDateString) {
-  const arrayInputDateString = inputDateString.split('/');
+  const arrayInputDateString = inputDateString.split('-');
   const date = new Date();
   date.setFullYear(
     date.getFullYear(),
