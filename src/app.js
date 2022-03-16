@@ -22,7 +22,6 @@ app.use(express.static(publicDirectoryPath));
 app.use(backRouter);
 app.use(frontRouter);
 
-
 const port = 3000
 app.listen(port, () =>{
     console.log('server is up and port ' + port);

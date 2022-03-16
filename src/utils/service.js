@@ -23,6 +23,7 @@ async function readDataForDB() {
 }
 
 async function actualMonthService() {
+  const workersData = readData();
   const currentMonth = new Date();
   const nextMonth = currentMonth.getMonth() + 1;
   const initMonth = new Date();
@@ -38,6 +39,7 @@ async function actualMonthService() {
 }
 
 async function nextMonthService() {
+  const workersData = readData();
   const currentMonth = new Date();
   const nextMonth = currentMonth.getMonth() + 1;
   const monthAgead = nextMonth + 1;
@@ -75,5 +77,4 @@ async function betweenTwoDatesService(startDate, endDate) {
     console.log('Unable to connect');
   }
 }
-
 module.exports = { readDataForDB, actualMonthService, nextMonthService, betweenTwoDatesService };
