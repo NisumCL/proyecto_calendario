@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/img/icon.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Index</title>
+</head>
+<body>
+    <div class="main-content">
+        <div class="header-content">
+           <h1>{{title}}</h1>
+           <h3>Who is Birthdays today?</h3>
+           <p id="welcome">Use this site to find out birthdays in Nisum!!</p>
+        </div>
+
+        <div class="text-content">
+            <ul>
+                <li><a href="/current-month">Current Month</a></li>
+                <br>
+                <li><a href="/next-month">Next Month</a></li>
+                <br>
+                <li><a href="/between-dates">Between Dates</a></li>
+            </ul>
+        </div>
+            
+        <div class="footer-content">
+            {{>footer}}
+        </div>
+        
+    </div>
+</body>
+</html>

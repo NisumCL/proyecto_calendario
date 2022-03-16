@@ -7,12 +7,14 @@
 
 ##### Funcionalidades
 Consta de 3 opciones:
+
 1. Mostrar los cumpleaños que caen entre dos fechas determinadas por el usuario
 2. Mostrar los cumpleaños del mes en curso
 3. Mostrar los cumpleaños del próximo mes
 
 ##### Indicaciones
 En la opción de mostrar cumpleaños entre dos fechas personalizadas:
+
 - Se debe entregar dos fechas
 - Si no se entrega ninguna fecha, o bien, alguna de las fechas está erronea o ausente, se acusa el error y no se muestran cumpleaños.
 - Si se entregan dos fechas iguales, sólo se muestran los cumpleaños que caigan en ese único día.
@@ -22,7 +24,6 @@ En la opción de mostrar cumpleaños entre dos fechas personalizadas:
 - Esta aplicación no tiene por objetivo actualizar la nómina de cumpleaños de empleados de NISUM, sino sólo mostrar cumpleaños ya registrados.
 - Esta aplicación arroja los cumpleaños para el año en curso y a lo sumo, parte del año próximo.
 - Esta aplicación consulta un archivo CSV que contiene la nómina de personas cuyas fechas de cumpleaños se requiere buscar. No consulta una base de datos.
-
 
 ##### Instrucciones
 Para poder hacer uso de esta aplicación se debe:
@@ -51,8 +52,9 @@ npm run start
 - [CSS](http://www.csszengarden.com/)
 
 ##### Colaboraciones y Sugerencias:
+
 Estamos muy contentas de recibir sugerencias 👌.
 
 @Programa Trainee Chile 2022
 
-***
+
