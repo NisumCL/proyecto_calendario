@@ -1,5 +1,3 @@
-console.log('elper Client side javascript file is loaded!');
-
 async function loadIntoTable(urlData) {
   const response = await fetch(urlData);
   const birthdays = await response.json();
