@@ -2,8 +2,8 @@
 const { biggerDate }  = require('./comparator');
 const { getGoogleSpreadSheet } = require('./reader');
 const { dataToObject, convertToDate } = require('./converter');
-const mongoose = require('mongoose')
-const Worker = require('../models/worker')
+const mongoose = require('mongoose');
+const Worker = require('../models/worker');
 
 mongoose.connect('mongodb://127.0.0.1:27017/nisum-workers', {
   // useNewUrlParser: true,
@@ -18,7 +18,7 @@ async function readDataForDB() {
     const workersData = dataToObject(fileInfo);
     return workersData;
   }catch(e){
-    console.log('Something went wrong!!! check your credentials')
+    console.log('Something went wrong!!! check your credentials');
   }
 }
 
@@ -30,10 +30,10 @@ async function actualMonthService() {
   const endMonth = new Date();
   endMonth.setMonth(nextMonth, 0);
   try{
-    const birthdays = await Worker.where({ birthday: { $gte: initMonth, $lte: endMonth }})
+    const birthdays = await Worker.where({ birthday: { $gte: initMonth, $lte: endMonth }});
     return birthdays;
   }catch(e){
-    console.log('Unable to connect')
+    console.log('Unable to connect');
   }
 }
 
@@ -46,10 +46,10 @@ async function nextMonthService() {
   const endMonth = new Date();
   endMonth.setMonth(monthAgead, 0);
   try{
-    const birthdays = await Worker.where({ birthday: { $gte: initMonth, $lte: endMonth }})
+    const birthdays = await Worker.where({ birthday: { $gte: initMonth, $lte: endMonth }});
     return birthdays;
   }catch(e){
-    console.log('Unable to connect')
+    console.log('Unable to connect');
   }
 }
 
@@ -63,7 +63,7 @@ async function betweenTwoDatesService(startDate, endDate) {
   endYear.setMonth(11, 31);
   try{
     if (biggerDate(firstDate, secondDate)) {
-      birthdayList = await Worker.where({ birthday: { $gte: firstDate, $lte: secondDate }})
+      birthdayList = await Worker.where({ birthday: { $gte: firstDate, $lte: secondDate }});
     } else {
       birthdayList = [
         await Worker.where({ birthday: { $gte: firstDate, $lte: endYear }}), 
@@ -72,9 +72,8 @@ async function betweenTwoDatesService(startDate, endDate) {
     }
     return birthdayList;
   }catch(e){
-    console.log('Unable to connect')
+    console.log('Unable to connect');
   }
 }
-
 
 module.exports = { readDataForDB, actualMonthService, nextMonthService, betweenTwoDatesService };
