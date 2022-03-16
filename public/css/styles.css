@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Monda&display=swap');
+
+body {
+  background-color: rgb(8, 124, 201);
+  font-family: 'Monda', sans-serif;
+  margin: 0 auto;
+  padding: 0 0px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header-content {
+  margin: 0;
+  padding: 20px 30px;
+  background-color: rgb(6, 108, 175);
+  width: 100%;
+  align-items: center;
+}
+
+
+#refs-container {
+  text-align: center;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding-top: 3%;
+  max-width: 800px;
+}
+
+h1 {
+  color: rgb(4, 252, 252);
+  font-size: 45px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+h2{
+  color: rgb(4, 252, 252);
+  margin-bottom: 0px;
+}
+
+span,
+#message-1,
+#welcome {
+  color: cyan;
+  margin: 2% 1% 1% 1%;
+}
+
+label {
+  color: cyan;
+  font-size: smaller;
+  margin: 2% 1% 1% 1%;
+}
+
+#bodycontent {
+  padding: 0% 2%;
+}
+
+img {
+  height: 43vh;
+  margin: 0px;
+  padding: 0px;
+}
+
+button,
+.button {
+  text-decoration: none;
+  color: rgb(54, 5, 168);
+  background-color: aqua;
+  padding: 4px;
+  margin: 1%;
+  border-radius: 3px;
+  border: none;
+}
+
+.button {
+  cursor: grab;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(54, 5, 168);
+  background-color: aqua;
+  padding: 7px 7px;
+  margin: 2%;
+  border-radius: 3px;
+  border: none;
+  line-height: 2em;
+  text-align: center;
+}
+
+a:hover {
+  background-color: rgb(32, 3, 112);
+  color: cyan;
+}
+
+.button:hover {
+  background-color: rgb(32, 3, 112);
+  color: cyan;
+}
+
+footer {
+  border-top: 1px dotted rgb(2, 70, 172);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgb(6, 108, 175);
+  color: rgb(4, 252, 252);
+  text-align: center;
+  /* position: fixed; */
+  width: 100%;
+  bottom: 5px;
+}
+
+p {
+  text-align: center;
+  color: rgb(4, 252, 252);
+}
+
+.cajaresultados {
+  margin-top: 0%;
+  padding: 1%;
+  overflow-y: scroll;
+  height: 39vh;
+  border-radius: 3px;
+  background-color: rgb(229, 247, 241);
+  margin-bottom: 1%;
+}
+
+#formulario {
+  margin-top: 10px;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid rgb(92, 179, 238);
+}
+
+.table-content {
+  align-items: center;
+}
+
+th {
+  color: rgb(7, 7, 172);
+  background-color: rgb(4, 252, 252);
+  border: 2px solid rgb(92, 179, 238);
+}
+
+td {
+  border: 2px solid rgb(92, 179, 238);
+  width: 300px;
+  color: white;
+  font-size: smaller;
+}
+
+th {
+  color: rgb(34, 5, 116);
+}
+
+thead th:nth-child(1) {
+  width: 30%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 35%;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: left;
+  
+}
+
+.container {
+  max-width: 940px;
+  margin: 0 auto;
+  height: 800px;
+}
+.left {
+  width: 150px;
+}

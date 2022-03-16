@@ -1,15 +1,16 @@
-const fs = require('fs');
+/* eslint-disable */
+const { GoogleSpreadsheet} = require('google-spreadsheet');
+const credentials = require('../json/credentials.json');
 
-function dataFile(fileName) {
-  // eslint-disable-next-line consistent-return
-  const data = fs.readFileSync(fileName, 'utf-8', (err, file) => {
-    if (err) {
-      throw new Error(err);
-    } else {
-      return file;
-    }
-  });
-  return data;
+async function getGoogleSpreadSheet (id) {
+  const document = new GoogleSpreadsheet(id);
+  await document.useServiceAccountAuth(credentials);
+  await document.loadInfo();
+
+  const sheet = document.sheetsByIndex[0];
+  const sheetRows =  await sheet.getRows();
+  return sheetRows;
 }
 
-module.exports = { dataFile };
+
+module.exports = { getGoogleSpreadSheet };

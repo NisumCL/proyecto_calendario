@@ -1,14 +1,28 @@
-const { filteredBirthdays, biggerDate } = require('./comparator');
-const { dataFile } = require('./reader');
+/* eslint-disable */
+const { biggerDate }  = require('./comparator');
+const { getGoogleSpreadSheet } = require('./reader');
 const { dataToObject, convertToDate } = require('./converter');
+const mongoose = require('mongoose');
+const Worker = require('../models/worker');
 
-function readData() {
-  const fileInfo = dataFile('./mails_y_cumples_03.csv');
-  const workersData = dataToObject(fileInfo);
-  return workersData;
+mongoose.connect('mongodb://127.0.0.1:27017/nisum-workers', {
+  // useNewUrlParser: true,
+  // useCreateIndex: true,
+  // useFindAndModify: false
+})
+
+async function readDataForDB() {
+  let googleDocId = '1X5mSu78hNXki5sKj_vD7hZIDpWwRJAzGf33otJG2MY0'; //esto es el id de mi spreadsheet en google drive"
+  try{
+    const fileInfo = await getGoogleSpreadSheet(googleDocId);
+    const workersData = dataToObject(fileInfo);
+    return workersData;
+  }catch(e){
+    console.log('Something went wrong!!! check your credentials');
+  }
 }
 
-function actualMonthService() {
+async function actualMonthService() {
   const workersData = readData();
   const currentMonth = new Date();
   const nextMonth = currentMonth.getMonth() + 1;
@@ -16,11 +30,15 @@ function actualMonthService() {
   initMonth.setDate(1);
   const endMonth = new Date();
   endMonth.setMonth(nextMonth, 0);
-  const birthdays = filteredBirthdays(initMonth, endMonth, workersData);
-  return birthdays;
+  try{
+    const birthdays = await Worker.where({ birthday: { $gte: initMonth, $lte: endMonth }});
+    return birthdays;
+  }catch(e){
+    console.log('Unable to connect');
+  }
 }
 
-function nextMonthService() {
+async function nextMonthService() {
   const workersData = readData();
   const currentMonth = new Date();
   const nextMonth = currentMonth.getMonth() + 1;
@@ -29,28 +47,34 @@ function nextMonthService() {
   initMonth.setMonth(nextMonth, 1);
   const endMonth = new Date();
   endMonth.setMonth(monthAgead, 0);
-  const birthdays = filteredBirthdays(initMonth, endMonth, workersData);
-  return birthdays;
+  try{
+    const birthdays = await Worker.where({ birthday: { $gte: initMonth, $lte: endMonth }});
+    return birthdays;
+  }catch(e){
+    console.log('Unable to connect');
+  }
 }
 
-function betweenTwoDatesService(startDate, endDate) {
-  const workersData = readData();
+async function betweenTwoDatesService(startDate, endDate) {
   let birthdayList = [];
   const firstDate = convertToDate(startDate);
   const secondDate = convertToDate(endDate);
-  if (biggerDate(firstDate, secondDate)) {
-    birthdayList = filteredBirthdays(firstDate, secondDate, workersData);
-  } else {
-    const startYear = new Date();
-    startYear.setMonth(0, 1);
-    const endYear = new Date();
-    endYear.setMonth(11, 31);
-    birthdayList = [
-      ...filteredBirthdays(firstDate, endYear, workersData),
-      ...filteredBirthdays(startYear, secondDate, workersData),
-    ];
+  const startYear = new Date();
+  startYear.setMonth(0, 1);
+  const endYear = new Date();
+  endYear.setMonth(11, 31);
+  try{
+    if (biggerDate(firstDate, secondDate)) {
+      birthdayList = await Worker.where({ birthday: { $gte: firstDate, $lte: secondDate }});
+    } else {
+      birthdayList = [
+        await Worker.where({ birthday: { $gte: firstDate, $lte: endYear }}), 
+        await Worker.where({ birthday: { $gte: startYear, $lte: secondDate }}) 
+      ];
+    }
+    return birthdayList;
+  }catch(e){
+    console.log('Unable to connect');
   }
-  return birthdayList;
 }
-
-module.exports = { actualMonthService, nextMonthService, betweenTwoDatesService };
+module.exports = { readDataForDB, actualMonthService, nextMonthService, betweenTwoDatesService };

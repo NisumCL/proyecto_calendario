@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nisum Cumpleaños</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+
+  <body>
+    <div class="header-content">
+      {{>header}}
+    </div>
+    <div class="main-content">
+
+      <div class="text-content">
+        <h1>Choose a range date</h1>
+      </div>
+        <form action="" method="GET" id="birthForm">
+          <label for="text">Start Date:</label>
+          <input type="date" name="fechaInicio" required />
+          <hr />
+          <label for="num">Finish Date:</label>
+          <input type="date" name="fechaFin" required />
+          <hr />
+          <button type="submit" value="Buscar" class="button">Search</button>
+        </form>
+      </div>
+      
+        <table id="table"></table>
+      
+      
+    </div>
+    <div class="footer-content">
+        {{>footer}}
+    </div>
+    <script src="/js/helper.js"></script>
+    <script src="/js/between-date.js"></script>
+
+  </body>
+</html>
