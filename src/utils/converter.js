@@ -35,7 +35,9 @@ function dataToObject(data) {
         name: workerData[1].replace('"', '').trim(),
         lastname: workerData[0].replace('"', ''),
         email: workerData[2],
+
         birthday: matchThisYear(workerData[3]),
+
         company: workerData[4],
       };
       return worker;

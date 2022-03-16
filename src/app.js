@@ -1,11 +1,14 @@
+
 const path = require('path');
 const hbs = require('hbs');
+
 const express = require('express');
 const { actualMonthService, nextMonthService, betweenTwoDatesService } = require('./utils/service');
 const { isValidDateFormat } = require('./utils/validator');
 
 const app = express();
 const port = 3000;
+
 
 const publicDirectoryPath = path.join(__dirname, '../public');
 const viewsPath = path.join(__dirname, '../templates/views');
@@ -68,16 +71,19 @@ app.get('/birthday_between_dates', (req, res) => {
 
     if (!startDate || !isValidDateFormat(startDate)) {
       res.send({ error: 'Problems with startDate' });
+
     }
     if (!endDate || !isValidDateFormat(endDate)) {
       res.send({ error: 'Problems with endDate' });
     }
+
     const birthdays = betweenTwoDatesService(startDate, endDate);
     res.send(birthdays);
   } catch (error) {
     res.status(500).send(error.message);
   }
 });
+
 
 app.get('*', (req, res) => {
   res.render('404', {
