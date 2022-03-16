@@ -76,5 +76,4 @@ async function betweenTwoDatesService(startDate, endDate) {
   }
 }
 
-
 module.exports = { readDataForDB, actualMonthService, nextMonthService, betweenTwoDatesService };

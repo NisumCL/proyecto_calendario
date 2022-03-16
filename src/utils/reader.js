@@ -12,5 +12,4 @@ async function getGoogleSpreadSheet (id) {
   return sheetRows;
 }
 
-
 module.exports = { getGoogleSpreadSheet };
