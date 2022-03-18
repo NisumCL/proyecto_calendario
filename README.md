@@ -1,3 +1,4 @@
+
 # **Proyecto calendario 🗓️**
 
 ###### Esta aplicación muestra los cumpleaños de los funcionarios de NISUM dentro de intervalos fijados por el usuario, en un lapso máximo de 365 días.
@@ -29,16 +30,13 @@ En la opción de mostrar cumpleaños entre dos fechas personalizadas:
 - La base de datos es creada ejecutando un archivo separado de la aplicación (detallado en las instrucciones). En caso de que ya exista, este archivo no vuelve a ejecutar su creación.
 
 ##### Instrucciones
-
 Para poder hacer uso de esta aplicación se debe:
-
 1. Instalar o tener instalado [Node.js](https://nodejs.org/). Esta aplicación funciona correctamente con la última versión de [Node.js](https://nodejs.org/), v10.
 2. Clonar este repositorio a un repositorio local.
-
+3. 
 ```sh
 git clone https://github.com/NisumCL/proyecto_calendario.git
 ```
-
 3. En el terminal preferido, posicionarse en la carpeta del repositorio y ejecutar:
 
 ```sh
@@ -72,17 +70,20 @@ npm run start
 ##### Referencias y tecnología que se usó para construir la aplicación:
 
 - [Como generar una API para rescatar registros desde Googlespreadsheets](https://www.youtube.com/watch?v=crIC5JbS5tc)
+<<<<<<< HEAD
 - [Como hacer a Mongodb y Mongoimport ejecutables desde terminal y así poder crear bases de datos en lineas de comando](https://www.youtube.com/watch?v=nuQD3Xfr0KY).
 - la línea de comandos que empleamos para crear una base de datos a partir de csv desde el terminal fue:
 ###### 'mongoimport -d nisum-workers -c workers --type CSV --file mails_y_cumples_03.csv --headerline'
+=======
+- [Como hacer a Mongodb y Mongoimport ejecutables desde terminal y así poder crear bases de datos en lineas de comando](https://www.youtube.com/watch?v=nuQD3Xfr0KY)
+La línea de comandos que empleamos para crear una base de datos a partir de csv desde el terminal fue:
+'mongoimport -d nisum-workers -c workers --type CSV --file mails_y_cumples_03.csv --headerline'
+>>>>>>> c95723b81b924e2019cb1abb311c0631f48e8bfc
 - [Robo3t](https://robomongo.org/)
 - [Postman](https://www.postman.com/)
 
 
 ##### Colaboraciones y Sugerencias:
-
 Estamos muy contentas de recibir sugerencias 👌.
 
 @Programa Trainee Chile 2022
-
----
