@@ -70,15 +70,9 @@ npm run start
 ##### Referencias y tecnología que se usó para construir la aplicación:
 
 - [Como generar una API para rescatar registros desde Googlespreadsheets](https://www.youtube.com/watch?v=crIC5JbS5tc)
-<<<<<<< HEAD
 - [Como hacer a Mongodb y Mongoimport ejecutables desde terminal y así poder crear bases de datos en lineas de comando](https://www.youtube.com/watch?v=nuQD3Xfr0KY).
 - la línea de comandos que empleamos para crear una base de datos a partir de csv desde el terminal fue:
 ###### 'mongoimport -d nisum-workers -c workers --type CSV --file mails_y_cumples_03.csv --headerline'
-=======
-- [Como hacer a Mongodb y Mongoimport ejecutables desde terminal y así poder crear bases de datos en lineas de comando](https://www.youtube.com/watch?v=nuQD3Xfr0KY)
-La línea de comandos que empleamos para crear una base de datos a partir de csv desde el terminal fue:
-'mongoimport -d nisum-workers -c workers --type CSV --file mails_y_cumples_03.csv --headerline'
->>>>>>> c95723b81b924e2019cb1abb311c0631f48e8bfc
 - [Robo3t](https://robomongo.org/)
 - [Postman](https://www.postman.com/)
 
