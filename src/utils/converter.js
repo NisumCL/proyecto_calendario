@@ -1,3 +1,4 @@
+/* eslint-disable */
 function convertToDate(inputDateString) {
   const arrayInputDateString = inputDateString.split('-');
   const date = new Date();
@@ -10,25 +11,32 @@ function convertToDate(inputDateString) {
   return date;
 }
 
+function matchThisYear(dateString) {
+  const arrayDateString = dateString.split('-');
+  const date = new Date();
+  date.setFullYear(
+    date.getFullYear(),
+    parseInt(arrayDateString[1], 10) - 1,
+    parseInt(arrayDateString[2], 10)
+  );
+  date.setHours(0, 0, 0, 0);
+  return date;
+}
+
 function dataToObject(data) {
-  const dataFormated = data
-    .split('\n')
-    .splice(1)
-    .map(row => {
-      if (row === '') {
-        throw new Error('Existe una fila sin información. Favor eliminarla del archivo.');
-      }
-      const workerData = row.split(',');
-      const worker = {
-        name: workerData[1].replace('"', '').trim(),
-        lastname: workerData[0].replace('"', ''),
-        email: workerData[2],
-        birthday: convertToDate(workerData[3]),
-        company: workerData[4],
-      };
-      return worker;
-    });
+  const dataFormated = []
+  data.forEach((e) => {
+    let wholename = e._rawData[0].split(', ');
+    let  worker = {
+      name: wholename[1],
+      lastname: wholename[0],
+      email:  e._rawData[1],
+      birthday: matchThisYear(e._rawData[2]),
+      company: e._rawData[3]
+    };
+    dataFormated.push(worker);
+  })
   return dataFormated;
 }
 
-module.exports = { dataToObject, convertToDate };
+module.exports = { dataToObject, convertToDate, matchThisYear };

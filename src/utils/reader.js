@@ -1,15 +1,28 @@
-const fs = require('fs');
+/* eslint-disable */
+const { GoogleSpreadsheet} = require('google-spreadsheet');
+const credentials = require('../json/credentials.json');
+const { dataToObject } = require('./converter')
 
-function dataFile(fileName) {
-  // eslint-disable-next-line consistent-return
-  const data = fs.readFileSync(fileName, 'utf-8', (err, file) => {
-    if (err) {
-      throw new Error(err);
-    } else {
-      return file;
-    }
-  });
-  return data;
+async function getGoogleSpreadSheet (id) {
+  const document = new GoogleSpreadsheet(id);
+  await document.useServiceAccountAuth(credentials);
+  await document.loadInfo();
+
+  const sheet = document.sheetsByIndex[0];
+  const sheetRows =  await sheet.getRows();
+  return sheetRows;
 }
 
-module.exports = { dataFile };
+async function readDataForDB() {
+  let googleDocId = '1X5mSu78hNXki5sKj_vD7hZIDpWwRJAzGf33otJG2MY0'; //esto es el id de mi spreadsheet en google drive"
+  try{
+    const fileInfo = await getGoogleSpreadSheet(googleDocId);
+    const workersData = dataToObject(fileInfo);
+    return workersData;
+  }catch(e){
+    console.log('Something went wrong!!! check your credentials')
+  }
+}
+
+
+module.exports = { getGoogleSpreadSheet, readDataForDB };
