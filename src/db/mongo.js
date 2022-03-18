@@ -1,6 +1,6 @@
 /* eslint-disable */
 const { MongoClient, ObjectID} = require('mongodb')
-const { readDataForDB} = require('../utils/service');
+const { readDataForDB } = require('../utils/reader');
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName= 'nisum-workers'
 
@@ -10,6 +10,7 @@ const createDataBase = () => {
             return console.log('Unable to connect to database');
         }
         const db = client.db(databaseName);
+        db.dropDatabase()
         const  workersData = await readDataForDB();
         db.collection('workers').insertMany(workersData, (error, result) =>{
             if(error){
@@ -17,8 +18,11 @@ const createDataBase = () => {
             }
             console.log('Database nisum-workers, collection workers and documents worker succesfully created');
         })
+            
     })
 }
+
+createDataBase() 
 
 module.exports = { createDataBase }
 

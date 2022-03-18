@@ -1,25 +1,16 @@
 /* eslint-disable */
 const { biggerDate }  = require('./comparator');
-const { getGoogleSpreadSheet } = require('./reader');
-const { dataToObject, convertToDate } = require('./converter');
+// const { readDataForDB, getGoogleSpreadSheet } = require('./reader');
+const { convertToDate } = require('./converter');
 const mongoose = require('mongoose')
-const Worker = require('../models/worker')
+const Worker = require('../models/worker');
 
-mongoose.connect('mongodb://127.0.0.1:27017/nisum-workers', {
-  // useNewUrlParser: true,
-  // useCreateIndex: true,
-  // useFindAndModify: false
-})
-
-async function readDataForDB() {
-  let googleDocId = '1X5mSu78hNXki5sKj_vD7hZIDpWwRJAzGf33otJG2MY0'; //esto es el id de mi spreadsheet en google drive"
-  try{
-    const fileInfo = await getGoogleSpreadSheet(googleDocId);
-    const workersData = dataToObject(fileInfo);
-    return workersData;
-  }catch(e){
-    console.log('Something went wrong!!! check your credentials')
-  }
+try {
+  mongoose.connect('mongodb://127.0.0.1:27017/nisum-workers', {
+    useNewUrlParser: true,
+  })
+}catch (e) {
+  console.log('Something went wrong. Check your DB or try again')
 }
 
 async function actualMonthService() {
@@ -76,5 +67,4 @@ async function betweenTwoDatesService(startDate, endDate) {
   }
 }
 
-
-module.exports = { readDataForDB, actualMonthService, nextMonthService, betweenTwoDatesService };
+module.exports = { actualMonthService, nextMonthService, betweenTwoDatesService };

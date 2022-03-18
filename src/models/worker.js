@@ -1,7 +1,8 @@
 /* eslint-disable */
 const mongoose = require('mongoose')
 
-const Worker = mongoose.model('Worker', { 
+
+const workerSchema = new mongoose.Schema({
     name: {
         type: String
     },
@@ -18,6 +19,9 @@ const Worker = mongoose.model('Worker', {
         type: String
     },
 })
+
+
+const Worker = mongoose.model('Worker', workerSchema)
 
 
 module.exports = Worker

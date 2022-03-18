@@ -26,7 +26,7 @@ En la opción de mostrar cumpleaños entre dos fechas personalizadas:
 - Esta aplicación no tiene por objetivo actualizar la nómina de cumpleaños de empleados de NISUM, sino sólo mostrar cumpleaños ya registrados.
 - Esta aplicación arroja los cumpleaños para el año en curso y a lo sumo, parte del año próximo.
 - Esta aplicación consulta una base de datos construida a partir de una Googlespreadsheet que contiene la nómina de personas cuyas fechas de cumpleaños se requiere buscar.
-- La base de datos es creada la primera vez que se ejecuta la aplicación. De momento se vuelve a crear (se agregarn documentos, cada vez que se ejecuta.
+- La base de datos es creada ejecutando un archivo separado de la aplicación (detallado en las instrucciones). En caso de que ya exista, este archivo no vuelve a ejecutar su creación.
 
 ##### Instrucciones
 
@@ -45,16 +45,18 @@ git clone https://github.com/NisumCL/proyecto_calendario.git
 cd proyecto_calendario
 npm i
 ```
-
-4. A continuación, en el mismo terminal, ejecutar:
+4. Para crear la base de datos, ejecutar:
+```sh
+node src/db/mongo.js
+```
+5. A continuación, en el mismo terminal, ejecutar:
 
 ```sh
 npm run start
 ```
+6. En el navegador, la aplicacion utiliza el puerto 3000, de manera que se visualiza en **http://localhost:3000/**
 
-5. En el navegador, la aplicacion utiliza el puerto 3000, de manera que se visualiza en **http://localhost:3000/**
-
-6. Es muy recomendable, aunque opcional, tener instalados Mongo, Mongoimport y Robo3t para poder visualizar la base de datos una vez creada. 
+7. Es muy recomendable, aunque opcional, tener instalados Mongo, Mongoimport y Robo3t para poder visualizar la base de datos una vez creada. 
 
 ##### Tecnologías empleadas en la aplicación:
 
@@ -71,8 +73,8 @@ npm run start
 
 - [Como generar una API para rescatar registros desde Googlespreadsheets](https://www.youtube.com/watch?v=crIC5JbS5tc)
 - [Como hacer a Mongodb y Mongoimport ejecutables desde terminal y así poder crear bases de datos en lineas de comando](https://www.youtube.com/watch?v=nuQD3Xfr0KY).
-la línea de comandos que empleamos para crear una base de datos a partir de csv desde el terminal fue:
-'mongoimport -d nisum-workers -c workers --type CSV --file mails_y_cumples_03.csv --headerline'
+- la línea de comandos que empleamos para crear una base de datos a partir de csv desde el terminal fue:
+###### 'mongoimport -d nisum-workers -c workers --type CSV --file mails_y_cumples_03.csv --headerline'
 - [Robo3t](https://robomongo.org/)
 - [Postman](https://www.postman.com/)
 
